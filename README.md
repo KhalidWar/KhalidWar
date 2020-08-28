@@ -19,9 +19,9 @@
 
 ---
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=KhalidWar&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-<img align="left" alt="Khalid's Github Stats" src="https://github-readme-stats.vercel.app/api?username=KhalidWar&show_icons=true&count_private=true" />
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=KhalidWar&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+<img alt="Khalid's Github Stats" src="https://github-readme-stats.vercel.app/api?username=KhalidWar&show_icons=true&count_private=true" />
 
 
 [website]: https://khalidwar.com 
