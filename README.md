@@ -5,7 +5,6 @@
 - 🔭 I’m currently working on some Flutter applications.
 - 🌱 I’m currently learning more about UI/UX  and design.
 
-
 ### Connect with me:
 
 [<img align="left" alt="khalidwar.com" width="30px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" />][website]
@@ -14,6 +13,9 @@
 
 <br />
 <br />
+
+<img align="left" alt="Khalid's Github Stats" src="https://github-readme-stats.vercel.app/api?username=KhalidWar&show_icons=true&hide_border=true" />
+
 
 [website]: https://khalidwar.com 
 [twitter]: https://twitter.com/RealKhalidWar 
