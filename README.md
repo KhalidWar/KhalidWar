@@ -11,6 +11,9 @@
 🐦 [twitter][twitter] **|** 
 👔 [linkedin][linkedin]
 
-[website]: https://khalidwar.com
-[twitter]: https://twitter.com/RealKhalidWar
-[linkedin]: https://linkedin.com/in/KhalidWar
+<br />
+<br />
+
+[website]: https://khalidwar.com <br />
+[twitter]: https://twitter.com/RealKhalidWar <br />
+[linkedin]: https://linkedin.com/in/KhalidWar <br />
