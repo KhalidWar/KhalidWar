@@ -14,7 +14,10 @@
 [<img align="left" alt="codeSTACKr | Twitter" width="30px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />][twitter]
 
 <br />
+<br />
+<br />
 
+---
 <img align="left" alt="Khalid's Github Stats" src="https://github-readme-stats.vercel.app/api?username=KhalidWar&show_icons=true&hide_border=true&count_private=true" />
 
 
