@@ -1,8 +1,16 @@
 ### Hi there, I'm Khalid Warsame 👋
 
 ## I'm a Flutter/Dart developer creating Android and iOS apps.
-- 🔭 I’m currently working on some Flutter applications.
+- 🔭 I’m currently working on my personal website and online presence.
 - 🌱 I’m currently learning more about UI/UX  and design.
+
+<br />
+
+## Skills and Experiences:
+* Flutter
+* UI/UX
+* Firebase
+* Version Control
 
 <br />
 
@@ -24,7 +32,6 @@
 <br />
 
 ---
-
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=KhalidWar&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 <br />
 <img alt="Khalid's Github Stats" src="https://github-readme-stats.vercel.app/api?username=KhalidWar&show_icons=true&count_private=true" />  
