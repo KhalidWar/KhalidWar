@@ -7,9 +7,10 @@
 <br />
 
 ## Skills and Experiences:
-* Flutter
-* UI/UX
+* Flutter Mobile App Development
+* Mobile App UI and UX
 * Firebase
+* Cloud Firestore
 * Version Control
 
 <br />
