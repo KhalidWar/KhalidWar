@@ -10,6 +10,7 @@
 * Flutter Mobile App Development
 * Mobile App UI and UX
 * Firebase
+* API Integration
 * Cloud Firestore
 * Version Control
 
