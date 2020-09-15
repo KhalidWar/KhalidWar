@@ -1,16 +1,16 @@
 ### Hi there, I'm Khalid Warsame 👋
 
-## I'm a Flutter/Dart developer creating Android and iOS apps.
-- 🔭 I’m currently working on my personal website and online presence.
-- 🌱 I’m currently learning more about UI/UX  and design.
+## I'm a Flutter/Dart developer creating cross-platform mobile apps.
+- 🔭 I’m currently working on my personal website, API consuming apps.
+- 🌱 I’m currently learning more about UI and UX.
 
 <br />
 
 ## Skills and Experiences:
 * Flutter Mobile App Development
 * Mobile App UI and UX
-* Firebase
 * API Integration
+* Firebase
 * Cloud Firestore
 * Version Control
 
