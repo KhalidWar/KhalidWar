@@ -1,8 +1,8 @@
 ### Hi there, I'm Khalid Warsame 👋
 
-## I'm a Flutter/Dart developer creating cross-platform mobile apps.
-- 🔭 I’m currently working on my personal website and API consuming apps.
-- 🌱 I’m currently learning more about UI and UX.
+## I'm a Flutter developer creating cross-platform mobile apps.
+- 🔭 I’m currently working on my personal projects.
+- 🌱 I’m currently learning more about API consupmtion and Firebase integration.
 
 <br />
 
