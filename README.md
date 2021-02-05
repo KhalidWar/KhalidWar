@@ -8,11 +8,16 @@
 
 ## Skills and Experiences:
 * Flutter Mobile App Development
+* Dart Language
 * Mobile App UI and UX
 * Firebase SDK
 * Cloud Firestore Database
 * API Integration
-* Version Control
+* Version Control (git)
+* CI/CD (codemagic)
+* Google Play Store Listing
+* Apple App Store listing
+
 
 <br />
 
