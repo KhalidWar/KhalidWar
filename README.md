@@ -1,39 +1,22 @@
-### Hi there, I'm Khalid Warsame 👋
+### Hi there, 👋
 
-## I'm a Flutter developer creating cross-platform mobile apps.
-- 🔭 I’m currently working on personal projects.
-- 🌱 I’m currently learning more about coding priciples and project structures.
+## I'm Khalid Warsame, a software developer.
+- I build Android and iOS mobile apps with Flutter.
+- I build websites with HTML, CSS, JavaScript, and ReactJs.
+- I am currently learning about about web3 and dApps.
 
-<br />
+### [Check out my website][website]
 
-## Skills and Experiences:
-* Flutter Mobile App Development
-* Dart Language
-* Mobile App UI and UX
-* Firebase SDK
-* Cloud Firestore Database
-* API Integration
-* Version Control (git)
-* CI/CD (codemagic)
-* Google Play Store Listing
-* Apple App Store listing
-
-
-<br />
-
-### Connect with me:
+#### Connect with me:
 
 <p align="left">
 
-[<img align="left" alt="khalidwar.com" width="30px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" />][website]
-  
   <a href="https://www.linkedin.com/in/khalidwar/">
     <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>&nbsp;&nbsp;
   <a href="https://twitter.com/RealKhalidWar">
     <img src="https://img.shields.io/badge/twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" />
   </a>&nbsp;&nbsp;
-
   
 </p>
  
