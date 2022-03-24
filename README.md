@@ -25,6 +25,12 @@
 ---
 <img alt="Khalid's Github Stats" src="https://github-readme-stats.vercel.app/api?username=KhalidWar&show_icons=true&count_private=true" />  [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=KhalidWar&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
+<a href="https://github.com/KhalidWar/KhalidWar">
+  <img align="center" src="https://github-readme-stats.vercel.app/api?username=KhalidWar&show_icons=true&line_height=27&count_private=true" alt="KhalidWar's GitHub Stats" />
+</a>
+<a href="https://github.com/KhalidWar/KhalidWar">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=KhalidWar&&title_color=ffffff&text_color=c9cacc&icon_color=2bbc8a&bg_color=1d1f21&langs_count=3" />
+</a>
 
 [website]: https://khalidwar.com 
 [twitter]: https://twitter.com/RealKhalidWar 
