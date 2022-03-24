@@ -32,5 +32,5 @@
 </a>
 
 [website]: https://khalidwar.com 
-[twitter]: https://twitter.com/RealKhalidWar 
+[twitter]: https://twitter.com/KhalidWarsa 
 [linkedin]: https://linkedin.com/in/KhalidWar
