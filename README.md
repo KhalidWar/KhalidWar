@@ -29,7 +29,7 @@
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=KhalidWar&show_icons=true&line_height=27&count_private=true" alt="KhalidWar's GitHub Stats" />
 </a>
 <a href="https://github.com/KhalidWar/KhalidWar">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=KhalidWar&&title_color=ffffff&text_color=c9cacc&icon_color=2bbc8a&bg_color=1d1f21&langs_count=3" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=KhalidWar" />
 </a>
 
 [website]: https://khalidwar.com 
