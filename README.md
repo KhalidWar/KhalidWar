@@ -19,8 +19,6 @@
   
 </p>
  
-<br />
-
 #### Experienced in:
 
 <p align="left">
