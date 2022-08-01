@@ -6,7 +6,9 @@
 - I build websites with HTML, CSS, JavaScript, and ReactJs.
 - I am currently learning about about web3 and dApps.
 
-#### Connect with me:
+<br />
+
+#### Connect with me
 
 <p align="left">
 
@@ -19,7 +21,7 @@
   
 </p>
  
-#### Experienced in:
+#### Experienced in
 
 <p align="left">
 
