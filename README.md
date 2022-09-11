@@ -2,42 +2,26 @@
 
 ## I'm Khalid Warsame, a software developer.
 
-- I build Android and iOS mobile apps with Flutter.
-- I build websites with HTML, CSS, JavaScript, and ReactJs.
-- I am currently learning about about web3 and dApps.
+I build high quality Android and iOS mobile apps with Flutter.
 
 <br />
 
 #### Connect with me
 
 <p align="left">
+    <a href="https://www.linkedin.com/in/khalidwar/" target="_blank"> <img src="https://img.icons8.com/color/48/000000/linkedin.png"/> </a>
+    <a href="https://twitter.com/KhalidWarsa" target="_blank"> <img src="https://img.icons8.com/color/48/000000/twitter--v1.png"/> </a>
+</a>
 
-  <a href="https://www.linkedin.com/in/khalidwar/">
-    <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>
-  <a href="https://twitter.com/KhalidWarsa">
-    <img src="https://img.shields.io/badge/twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" />
-  </a>
-  
 </p>
  
 #### Experienced in
 
-<p align="left">
-
-  <a href="https://flutter.dev/">
-    <img src="https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white" />
-  </a>
-    <a href="https://dart.dev/">
-    <img src="https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white" />
-  </a>
-  <a href="https://reactjs.org/">
-    <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
-  </a>
-  <a href="https://www.javascript.com/">
-    <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" />
-  </a>
-
+<p align="left"> 
+    <a href="https://www.flutter.dev" target="_blank"> <img src="https://img.icons8.com/fluency/48/undefined/flutter.png"/> </a> 
+    <a href="https://dart.dev" target="_blank"> <img src="https://img.icons8.com/color/48/undefined/dart.png"/> </a>
+    <a href="https://reactjs.org/" target="_blank"> <img src="https://img.icons8.com/plasticine/48/000000/react.png"/> </a> 
+    <a href="https://www.javascript.com/" target="_blank"> <img src="https://img.icons8.com/color/48/000000/javascript.png"/> </a> 
 </p>
 
 ---
