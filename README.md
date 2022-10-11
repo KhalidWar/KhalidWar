@@ -4,8 +4,6 @@
 
 I build high quality Android and iOS mobile apps with Flutter.
 
-<br />
-
 #### Connect with me
 
 <p align="left">
