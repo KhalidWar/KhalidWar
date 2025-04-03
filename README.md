@@ -1,26 +1,73 @@
-### Hi there, 👋
+[flutterweb]: https://flutter.dev/
 
-## I'm Khalid Warsame, a software developer.
+<div align="center">
+  <h1>Hi 👋, I'm Khalid Warsame</h1>
+  <h3>Experienced Mobile App Developer</h3>
+</div>
 
-I build high quality Android and iOS mobile apps with Flutter.
+<br/>
 
-#### Connect with me
+I work at one of the top three cruise companies in the world, where I played a key role in launching a brand-new app that enhanced the guest experience for millions of users across 20 cruise ships, contributing to over $10M in revenue. Additionally, I helped a startup secure $100K in funding with a successful MVP launch.
+
+Beyond development, I create educational video content on YouTube and other platforms, sharing my knowledge to help aspiring developers learn and grow.
+
+#### Experienced in
+
+<p align="left">
+  <!-- Mobile Development & Backend -->
+  <a href="https://www.flutter.dev" target="_blank">
+    <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
+  </a>
+  <a href="https://dart.dev" target="_blank">
+    <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"/>
+  </a>
+  <a href="https://firebase.google.com" target="_blank">
+    <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white" alt="Firebase"/>
+  </a>
+  <a href="https://firebase.google.com/products/firestore" target="_blank">
+    <img src="https://img.shields.io/badge/Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firestore"/>
+  </a>
+  <a href="https://supabase.com" target="_blank">
+    <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase"/>
+  </a>
+  <br/><br/>
+  <!-- Web Development -->
+  <a href="https://www.javascript.com/" target="_blank">
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
+  </a>
+  <a href="https://www.typescriptlang.org/" target="_blank">
+    <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
+  </a>
+</p>
+
+#### Follow me on
 
 <p align="left">
     <a href="https://www.linkedin.com/in/khalidwar/" target="_blank"> <img src="https://img.icons8.com/color/48/000000/linkedin.png"/></a>
     <a href="https://twitter.com/KhalidWarsa" target="_blank"> <img src="https://img.icons8.com/color/48/000000/twitter--v1.png"/></a>
-</a>
-
+    <a href="https://www.youtube.com/@khalidwar" target="_blank"> <img src="https://img.icons8.com/color/48/000000/youtube-play.png"/></a>
+    <a href="https://www.tiktok.com/@khalidwar" target="_blank"> <img src="https://img.icons8.com/color/48/000000/tiktok.png"/></a>
+    <a href="https://www.instagram.com/khalidwar" target="_blank"> <img src="https://img.icons8.com/color/48/000000/instagram-new.png"/></a>
 </p>
- 
-#### Experienced in
 
-<p align="left"> 
-    <a href="https://www.flutter.dev" target="_blank"> <img src="https://img.icons8.com/fluency/48/undefined/flutter.png"/></a> 
-    <a href="https://dart.dev" target="_blank"> <img src="https://img.icons8.com/color/48/undefined/dart.png"/></a>
-    <a href="https://reactjs.org/" target="_blank"> <img src="https://img.icons8.com/plasticine/48/000000/react.png"/></a> 
-    <a href="https://www.javascript.com/" target="_blank"> <img src="https://img.icons8.com/color/48/000000/javascript.png"/></a> 
-</p>
+#### Highlighted Videos
+
+<table>
+  <tr>
+    <td>
+      <a href="https://youtu.be/nhWBNjzv_6g" target="_blank">
+        <img src="https://img.youtube.com/vi/nhWBNjzv_6g/maxresdefault.jpg" alt="How I became a Software Developer without CS degree or bootcamp" width="480"/>
+      </a>
+      <p align="center">How I became a Software Developer without CS degree or bootcamp</p>
+    </td>
+    <td>
+      <a href="https://youtu.be/5jv2S7BjUf8" target="_blank">
+        <img src="https://img.youtube.com/vi/5jv2S7BjUf8/maxresdefault.jpg" alt="How to become a Mobile App developer? (for dummies)" width="480"/>
+      </a>
+      <p align="center">How to become a Mobile App developer? (for dummies)</p>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -30,15 +77,3 @@ I build high quality Android and iOS mobile apps with Flutter.
 <a href="https://github.com/KhalidWar">
   <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=KhalidWar&langs_count=3" />
 </a>
-
-[website]: https://khalidwar.com
-[twitter]: https://twitter.com/KhalidWarsa
-[linkedin]: https://linkedin.com/in/KhalidWar
-[flutterweb]: https://flutter.dev/
-[dartweb]: https://dart.dev/
-[reactweb]: https://reactjs.org/
-[javascriptweb]: https://www.javascript.com/
-[flutter]: (https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
-[dart]: (https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
-[react]: (https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-[javascript]: (https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
