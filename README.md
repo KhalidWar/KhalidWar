@@ -1,7 +1,7 @@
 [flutterweb]: https://flutter.dev/
 
 <div align="center">
-  <h1>Hi 👋, I'm Khalid Warsame</h1>
+  <h2>Hi 👋, I'm Khalid Warsame</h1>
   <h3>Experienced Mobile App Developer</h3>
 </div>
 
@@ -11,7 +11,7 @@ I work at one of the top three cruise companies in the world, where I played a k
 
 Beyond development, I create educational video content on YouTube and other platforms, sharing my knowledge to help aspiring developers learn and grow.
 
-#### Experienced in
+### Experienced in
 
 <p align="left">
   <!-- Mobile Development & Backend -->
@@ -22,7 +22,7 @@ Beyond development, I create educational video content on YouTube and other plat
     <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"/>
   </a>
   <a href="https://firebase.google.com" target="_blank">
-    <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white" alt="Firebase"/>
+    <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase"/>
   </a>
   <a href="https://firebase.google.com/products/firestore" target="_blank">
     <img src="https://img.shields.io/badge/Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firestore"/>
@@ -30,17 +30,9 @@ Beyond development, I create educational video content on YouTube and other plat
   <a href="https://supabase.com" target="_blank">
     <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase"/>
   </a>
-  <br/><br/>
-  <!-- Web Development -->
-  <a href="https://www.javascript.com/" target="_blank">
-    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
-  </a>
-  <a href="https://www.typescriptlang.org/" target="_blank">
-    <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
-  </a>
 </p>
 
-#### Follow me on
+### Follow me on
 
 <p align="left">
     <a href="https://www.linkedin.com/in/khalidwar/" target="_blank"> <img src="https://img.icons8.com/color/48/000000/linkedin.png"/></a>
@@ -50,7 +42,7 @@ Beyond development, I create educational video content on YouTube and other plat
     <a href="https://www.instagram.com/khalidwar" target="_blank"> <img src="https://img.icons8.com/color/48/000000/instagram-new.png"/></a>
 </p>
 
-#### Highlighted Videos
+### Highlighted Videos
 
 <table>
   <tr>
@@ -68,8 +60,6 @@ Beyond development, I create educational video content on YouTube and other plat
     </td>
   </tr>
 </table>
-
----
 
 <a href="https://github.com/KhalidWar">
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=KhalidWar&show_icons=true&line_height=27&count_private=true" alt="KhalidWar's GitHub Stats" />
