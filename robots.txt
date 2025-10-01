@@ -1,0 +1,8 @@
+# robots.txt for khalidwar.com
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://khalidwar.com/sitemap.xml
+
