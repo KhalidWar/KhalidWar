@@ -1,0 +1,10 @@
+# Exclude from Cloudflare Pages deployment
+resume.pdf
+
+# Optional: exclude other files you don't want deployed
+.DS_Store
+*.md
+LICENSE
+README.md
+agent.md
+
