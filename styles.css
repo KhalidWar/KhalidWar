@@ -4,7 +4,7 @@
     --white: #ffffff;
     --black: #000000;
     --green: #00d084;
-    
+
     /* Gray scale */
     --gray-100: #f5f5f5;
     --gray-200: #e5e5e5;
@@ -15,23 +15,23 @@
     --gray-700: #404040;
     --gray-800: #262626;
     --gray-900: #171717;
-    
+
     /* Semantic colors - Light Theme */
     --bg-primary: var(--white);
     --bg-secondary: var(--gray-100);
     --bg-tertiary: var(--gray-200);
-    
+
     --text-primary: var(--black);
     --text-secondary: var(--gray-600);
     --text-tertiary: var(--gray-500);
-    
+
     --border-primary: var(--gray-200);
     --border-secondary: var(--gray-300);
-    
+
     --card-bg: var(--gray-100);
     --card-bg-hover: var(--gray-200);
     --card-border: var(--gray-200);
-    
+
     --button-bg: var(--white);
     --button-text: var(--black);
     --button-border: var(--gray-200);
@@ -46,18 +46,18 @@
     --bg-primary: var(--black);
     --bg-secondary: var(--gray-900);
     --bg-tertiary: var(--gray-800);
-    
+
     --text-primary: var(--white);
     --text-secondary: var(--gray-400);
     --text-tertiary: var(--gray-500);
-    
+
     --border-primary: var(--gray-700);
     --border-secondary: var(--gray-600);
-    
+
     --card-bg: var(--gray-800);
     --card-bg-hover: var(--gray-700);
     --card-border: var(--gray-700);
-    
+
     --button-bg: var(--gray-800);
     --button-text: var(--white);
     --button-border: var(--gray-700);
@@ -254,34 +254,51 @@ body {
        - spacing-32: Page-level spacing (containers, hero sections)
     */
     --spacing-0: 0;
-    --spacing-4: 0.25rem;    /* 4px  - Minimal */
-    --spacing-8: 0.5rem;     /* 8px  - Tight */
-    --spacing-12: 0.75rem;   /* 12px - Standard */
-    --spacing-16: 1rem;      /* 16px - Comfortable */
-    --spacing-24: 1.5rem;    /* 24px - Section */
-    --spacing-32: 2rem;      /* 32px - Large */
-    --spacing-40: 2.5rem;    /* 40px - XL */
-    
+    --spacing-4: 0.25rem;
+    /* 4px  - Minimal */
+    --spacing-8: 0.5rem;
+    /* 8px  - Tight */
+    --spacing-12: 0.75rem;
+    /* 12px - Standard */
+    --spacing-16: 1rem;
+    /* 16px - Comfortable */
+    --spacing-24: 1.5rem;
+    /* 24px - Section */
+    --spacing-32: 2rem;
+    /* 32px - Large */
+    --spacing-40: 2.5rem;
+    /* 40px - XL */
+
     /* Border Radius Scale - 4px increments */
-    --border-radius-sm: 8px;   /* Small elements */
-    --border-radius-md: 12px;  /* Medium elements */
-    --border-radius-lg: 16px;  /* Large boxes */
-    --border-radius-xl: 20px;  /* Extra large */
-    
+    --border-radius-sm: 8px;
+    /* Small elements */
+    --border-radius-md: 12px;
+    /* Medium elements */
+    --border-radius-lg: 16px;
+    /* Large boxes */
+    --border-radius-xl: 20px;
+    /* Extra large */
+
     /* Component Sizes */
     --button-height: 48px;
     --button-padding: var(--spacing-12) var(--spacing-24);
-    
+
     /* Icon Sizes - Standardized across all components */
-    --icon-sm: 16px;   /* Small icons (skills, badges) */
-    --icon-md: 20px;   /* Medium icons (social links, buttons) */
-    --icon-lg: 24px;   /* Large icons (featured elements) */
-    
+    --icon-sm: 16px;
+    /* Small icons (skills, badges) */
+    --icon-md: 20px;
+    /* Medium icons (social links, buttons) */
+    --icon-lg: 24px;
+    /* Large icons (featured elements) */
+
     /* Button/Link Container Sizes */
-    --btn-container-sm: 32px;  /* Compact buttons (hero links) */
-    --btn-container-md: 40px;  /* Standard buttons (most links) */
-    --btn-container-lg: 48px;  /* Large buttons (nav, primary CTAs) */
-    
+    --btn-container-sm: 32px;
+    /* Compact buttons (hero links) */
+    --btn-container-md: 40px;
+    /* Standard buttons (most links) */
+    --btn-container-lg: 48px;
+    /* Large buttons (nav, primary CTAs) */
+
     /* Transitions */
     --hover-transform: translateY(-2px);
     --transition-fast: all 0.2s ease;
@@ -442,10 +459,13 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
         transform: scale(1);
     }
+
     50% {
         opacity: 0.5;
         transform: scale(0.95);
@@ -618,24 +638,6 @@ body {
     transition: var(--transition);
 }
 
-/* LinkedIn brand color */
-.hero-link[aria-label="LinkedIn"] .hero-link-icon {
-    color: #0A66C2;
-}
-
-/* Twitter brand color */
-.hero-link[aria-label="Twitter"] .hero-link-icon {
-    color: #1DA1F2;
-}
-
-/* Maintain brand colors on hover */
-.hero-link:hover[aria-label="LinkedIn"] .hero-link-icon {
-    color: #0A66C2;
-}
-
-.hero-link:hover[aria-label="Twitter"] .hero-link-icon {
-    color: #1DA1F2;
-}
 
 
 /* About Section */
@@ -1235,6 +1237,10 @@ body {
     color: #FFFFFF;
 }
 
+:root[data-theme="dark"] .skill-link[href*="github"] .skill-icon path {
+    fill: #FFFFFF;
+}
+
 :root[data-theme="dark"] .content-link[href*="tiktok"] .content-link-icon {
     color: #FFFFFF;
 }
@@ -1304,6 +1310,10 @@ body {
 }
 
 .video-section h3,
+.portfolio-section {
+    margin-top: var(--spacing-24);
+}
+
 .portfolio-section h3 {
     font-size: 1.125rem;
     margin-bottom: var(--spacing-16);
@@ -1379,7 +1389,8 @@ body {
     width: 32px;
     height: 32px;
     color: white;
-    margin-left: 3px; /* Slight offset for visual centering */
+    margin-left: 3px;
+    /* Slight offset for visual centering */
 }
 
 .video-placeholder:hover .play-button {
@@ -1417,37 +1428,37 @@ body {
         grid-template-columns: 1fr;
         gap: var(--spacing-12);
     }
-    
+
     .work-with-me-actions {
         flex-direction: column;
     }
-    
+
     .cta-button {
         flex: none;
     }
-    
+
     .achievements-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--spacing-8);
     }
-    
+
     .projects-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .portfolio-item {
         padding: var(--spacing-12);
     }
-    
+
     .app-store-icon {
         width: 44px;
         height: 44px;
     }
-    
+
     .portfolio-item h4 {
         font-size: 0.9375rem;
     }
-    
+
     .app-tagline {
         font-size: 0.8125rem;
     }
@@ -1457,35 +1468,35 @@ body {
     .portfolio-items {
         gap: var(--spacing-8);
     }
-    
+
     .achievements-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--spacing-8);
     }
-    
+
     .portfolio-item {
         padding: var(--spacing-8);
         flex-direction: row;
         align-items: center;
     }
-    
+
     .app-store-icon {
         width: 40px;
         height: 40px;
         margin-right: var(--spacing-12);
         margin-bottom: 0;
     }
-    
+
     .app-info {
         flex: 1;
         min-width: 0;
     }
-    
+
     .portfolio-item h4 {
         font-size: 0.875rem;
         margin-bottom: var(--spacing-4);
     }
-    
+
     .app-tagline {
         font-size: 0.8125rem;
         margin-bottom: var(--spacing-8);
@@ -1575,7 +1586,8 @@ body {
     text-overflow: ellipsis;
 }
 
-.loading-apps, .loading-error {
+.loading-apps,
+.loading-error {
     text-align: center;
     color: var(--text-tertiary);
     font-style: italic;
@@ -1586,13 +1598,15 @@ body {
 .store-links {
     display: flex;
     gap: var(--spacing-8);
-    flex-wrap: nowrap; /* Never wrap - always side by side */
+    flex-wrap: nowrap;
+    /* Never wrap - always side by side */
     width: 100%;
 }
 
 .store-link {
     /* Extends: .btn-base .btn-full */
-    flex: 1; /* Equal width expansion */
+    flex: 1;
+    /* Equal width expansion */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1656,7 +1670,8 @@ body {
 }
 
 .service-tag-full {
-    grid-column: 1 / -1; /* Span full width */
+    grid-column: 1 / -1;
+    /* Span full width */
 }
 
 .service-tag:hover {
@@ -1825,7 +1840,8 @@ body {
     color: var(--text-tertiary);
 }
 
-.release-date, .version {
+.release-date,
+.version {
     background-color: var(--bg-secondary);
     padding: 0.25rem 0.75rem;
     border-radius: 12px;
@@ -1886,11 +1902,11 @@ body {
         gap: var(--spacing-12);
         padding: 0 var(--spacing-12);
     }
-    
+
     .bento-box {
         padding: var(--spacing-16);
     }
-    
+
     .portfolio-items {
         gap: var(--spacing-8);
     }
@@ -1911,21 +1927,21 @@ body {
             "content content working working";
         padding: 0 var(--spacing-8);
     }
-    
+
     .bento-box {
         padding: var(--spacing-12);
     }
-    
+
     .portfolio-items {
         grid-template-columns: 1fr;
         gap: var(--spacing-8);
     }
-    
+
     .achievements-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--spacing-8);
     }
-    
+
     .portfolio-item {
         padding: var(--spacing-12);
     }
@@ -1959,11 +1975,11 @@ body {
     .bento-box {
         padding: var(--spacing-12);
     }
-    
+
     .portfolio-items {
         gap: var(--spacing-8);
     }
-    
+
     .portfolio-item {
         padding: var(--spacing-8);
     }
@@ -1972,23 +1988,23 @@ body {
     .name {
         font-size: 1.75rem;
     }
-    
+
     .profile-img,
     .profile-placeholder {
         max-width: 160px;
     }
-    
+
     .initials {
         font-size: 2.5rem;
     }
-    
+
     .hero-badge {
         top: 0.5rem;
         right: 0.5rem;
         font-size: 0.625rem;
         padding: 0.375rem 0.75rem;
     }
-    
+
     .hero-tagline {
         font-size: 0.875rem;
     }
@@ -2018,11 +2034,11 @@ body {
     .bento-box {
         padding: var(--spacing-12);
     }
-    
+
     .portfolio-items {
         gap: var(--spacing-8);
     }
-    
+
     .portfolio-item {
         padding: var(--spacing-8);
     }
@@ -2031,33 +2047,33 @@ body {
     .name {
         font-size: 1.5rem;
     }
-    
+
     .profile-img,
     .profile-placeholder {
         max-width: 140px;
     }
-    
+
     .initials {
         font-size: 2rem;
     }
-    
+
     .hero-badge {
         position: relative;
         top: auto;
         right: auto;
         margin-bottom: 0.5rem;
     }
-    
+
     .hero-tagline {
         font-size: 0.8125rem;
         max-width: 280px;
     }
-    
+
     .hero-link {
         width: var(--btn-container-md);
         height: var(--btn-container-md);
     }
-    
+
     .hero-link-icon {
         width: var(--icon-md);
         height: var(--icon-md);
@@ -2065,5 +2081,12 @@ body {
 
     .bento-box {
         padding: var(--spacing-24);
+    }
+}
+
+/* Disable hover effects on mobile devices */
+@media (hover: none) {
+    *:hover {
+        transform: none !important;
     }
 }
