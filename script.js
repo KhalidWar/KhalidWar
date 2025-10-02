@@ -113,12 +113,12 @@ function updateNCLLogo(nclData) {
   }
 }
 
-// Initialize theme based on user preference or system setting
+// Initialize theme based on session preference or system setting
 function initializeTheme() {
-  const savedTheme = localStorage.getItem("theme");
+  const savedTheme = sessionStorage.getItem("theme");
 
   if (savedTheme) {
-    // Use saved manual preference
+    // Use saved session preference
     document.documentElement.setAttribute("data-theme", savedTheme);
     updateThemeIcon(savedTheme);
   } else {
@@ -140,7 +140,7 @@ function toggleTheme() {
   const newTheme = currentTheme === "dark" ? "light" : "dark";
 
   document.documentElement.setAttribute("data-theme", newTheme);
-  localStorage.setItem("theme", newTheme);
+  sessionStorage.setItem("theme", newTheme);
 
   // Update icon visibility
   updateThemeIcon(newTheme);
@@ -173,8 +173,8 @@ document.addEventListener("DOMContentLoaded", function () {
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", function (e) {
-      // Only auto-update if no manual preference is stored
-      if (!localStorage.getItem("theme")) {
+      // Only auto-update if no manual preference is stored for this session
+      if (!sessionStorage.getItem("theme")) {
         const systemTheme = e.matches ? "dark" : "light";
         document.documentElement.setAttribute("data-theme", systemTheme);
         updateThemeIcon(systemTheme);
