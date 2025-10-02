@@ -1,19 +1,14 @@
 // Constants
 const MAX_TAGLINE_LENGTH = 30;
 
-// Function to fetch app data from App Store API
+// Function to fetch app data from App Store API via Cloudflare Pages Function
 async function fetchAppData(appId) {
   try {
-    const response = await fetch(
-      `https://itunes.apple.com/lookup?id=${appId}`,
-      {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-        },
-      }
-    );
+    // Use our own Cloudflare Pages Function to avoid CORS issues
+    const response = await fetch(`/apps-data?id=${appId}`, {
+      method: "GET",
+      cache: "default",
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -78,42 +73,43 @@ function updateAppCard(cardElement, appStoreData) {
 
 // Function to load all apps
 async function loadApps() {
-  // Find all app cards with data-app-id
   const appCards = document.querySelectorAll(".portfolio-item[data-app-id]");
+  const appDataCache = {};
 
   try {
-    // Fetch and update each app card
     for (const card of appCards) {
       const appId = card.getAttribute("data-app-id");
       if (appId) {
         const appStoreData = await fetchAppData(appId);
         if (appStoreData) {
+          appDataCache[appId] = appStoreData;
           updateAppCard(card, appStoreData);
         }
       }
+    }
+
+    // Load NCL logo using cached data if available
+    const nclAppId = "6510931792";
+    if (appDataCache[nclAppId]) {
+      updateNCLLogo(appDataCache[nclAppId]);
     }
   } catch (error) {
     console.error("Error loading apps:", error);
   }
 }
 
-// Function to load NCL logo
-async function loadNCLLogo() {
-  try {
-    const nclData = await fetchAppData("6510931792"); // NCL App Store ID
-    if (nclData && nclData.artworkUrl60) {
-      const logoContainer = document.getElementById("ncl-logo-container");
-      if (logoContainer) {
-        logoContainer.innerHTML = `
-                    <img src="${nclData.artworkUrl60}" 
-                         alt="NCL App Logo" 
-                         class="ncl-logo"
-                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'ncl-logo-placeholder\\'>🚢</div>';">
-                `;
-      }
+// Function to update NCL logo with app data
+function updateNCLLogo(nclData) {
+  if (nclData && nclData.artworkUrl60) {
+    const logoContainer = document.getElementById("ncl-logo-container");
+    if (logoContainer) {
+      logoContainer.innerHTML = `
+                <img src="${nclData.artworkUrl60}" 
+                     alt="NCL App Logo" 
+                     class="ncl-logo"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'ncl-logo-placeholder\\'>🚢</div>';">
+            `;
     }
-  } catch (error) {
-    console.error("Error loading NCL logo:", error);
   }
 }
 
@@ -169,7 +165,6 @@ function updateThemeIcon(theme) {
 // Load apps and NCL logo when page loads
 document.addEventListener("DOMContentLoaded", function () {
   loadApps();
-  loadNCLLogo();
 
   // Initialize theme
   initializeTheme();

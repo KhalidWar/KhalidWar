@@ -1,10 +1,19 @@
 # Exclude from Cloudflare Pages deployment
+
+# Documentation files
+*.md
+agent.md
+README.md
+
+# License file
+LICENSE
+
+# Large files (hosted on R2 instead)
 resume.pdf
 
-# Optional: exclude other files you don't want deployed
+# System files
 .DS_Store
-*.md
-LICENSE
-README.md
-agent.md
 
+# Git files
+.git
+.gitignore

@@ -282,11 +282,13 @@ Special structure for My Work section apps with progressive enhancement:
 **App Store Integration:**
 
 - Static HTML skeleton is always present with fallback content (emoji icon, default name/tagline)
-- JavaScript dynamically fetches app data from iTunes Search API
+- JavaScript dynamically fetches app data via Cloudflare Pages Function (avoids CORS issues)
 - `updateAppCard()` function replaces icon, name, and tagline without changing structure
+- `updateNCLLogo()` reuses cached data from loadApps() to avoid redundant API calls
 - Tagline is capped at 30 characters to prevent grid overflow: `tagline.substring(0, 30).trim() + "..."`
 - Store button layout: Always side by side using `flex: 1` for equal width distribution
 - Buttons use `flex-wrap: nowrap` to prevent wrapping on any screen size
+- Data is cached in-memory during page load to minimize API calls
 
 ### Brand Colors Reference
 
@@ -390,24 +392,90 @@ All spacing follows a strict 8px-based grid system for consistency:
 
 ```
 /
-├── index.html          # Main HTML file
-├── script.js           # JavaScript (App Store API, theme toggle)
-├── styles.css          # All CSS styles
-├── profile.webp        # Profile picture
-├── resume.pdf          # Resume document
-└── agent.md           # This documentation file
+├── index.html                    # Main HTML file
+├── script.js                     # JavaScript (theme toggle, app data fetching)
+├── styles.css                    # All CSS styles
+├── profile.webp                  # Profile picture (16KB, optimized)
+├── robots.txt                    # SEO - Search engine directives
+├── sitemap.xml                   # SEO - Site structure for crawlers
+├── .cfignore                     # Cloudflare Pages - Files to exclude from deployment
+├── agent.md                      # This documentation file
+└── functions/                    # Cloudflare Pages Functions
+    └── apps-data.js              # App Store data proxy endpoint
 ```
+
+**Note on Resume:** The resume is hosted separately on Cloudflare R2 at `https://cdn.khalidwar.com/resume.pdf` and is NOT included in the website deployment bundle. This reduces initial page load by 99KB (47% smaller).
 
 ## Key Sections
 
-1. **Hero** - Profile picture (profile.webp), name, title, social links
+1. **Hero** - Profile picture (profile.webp), name, title, social links (LinkedIn, Twitter)
 2. **About** - Description, skills, achievements
 3. **My Work** - Explainer text, apps from App Store API with progressive enhancement
 4. **Work With Me** - Service tags (Launch Fast, Scale & Maintain), CTA buttons (Build Your App, My Resume)
 5. **Content Creation** - Social media links (YouTube, Instagram, TikTok), Link in bio button
 6. **Working on** - Current projects (NCL, Stealth Startup), tech stack
 
-## Theme Toggle
+## Deployment Architecture
+
+### Cloudflare Pages + R2 Setup
+
+The website uses a split architecture for optimal performance:
+
+**Main Website (Cloudflare Pages):**
+
+- Domain: `https://khalidwar.com`
+- Deployed files: HTML, CSS, JS, images (profile.webp)
+- Auto-deployed via Git integration
+- Total size: ~110KB (initial load)
+
+**CDN Assets (Cloudflare R2):**
+
+- Domain: `https://cdn.khalidwar.com`
+- Hosted file: `resume.pdf` (99KB)
+- Custom domain connected to R2 bucket
+- Loaded on-demand only when user clicks "My Resume"
+
+**Benefits:**
+
+- ✅ 47% smaller initial page load (~110KB vs ~209KB)
+- ✅ Resume loads only when needed (bandwidth savings)
+- ✅ Easy resume updates without redeploying website
+- ✅ Free hosting (within Cloudflare limits)
+
+### Excluded Files (.cfignore)
+
+The `.cfignore` file tells Cloudflare Pages to exclude these from deployment:
+
+```
+resume.pdf          # Hosted on R2 instead
+.DS_Store           # Mac system file
+*.md                # Markdown documentation
+LICENSE             # License file
+README.md           # Project readme
+agent.md            # This file
+```
+
+### Resume Link Implementation
+
+```html
+<a
+  href="https://cdn.khalidwar.com/resume.pdf"
+  target="_blank"
+  class="cta-button"
+  download
+>
+  My Resume
+</a>
+```
+
+- Uses absolute URL to R2 custom domain
+- `download` attribute prompts browser to download
+- `target="_blank"` opens in new tab as fallback
+- Loads dynamically (not bundled with site)
+
+## JavaScript Features
+
+### Theme Toggle
 
 JavaScript handles light/dark theme switching:
 
@@ -415,3 +483,79 @@ JavaScript handles light/dark theme switching:
 - Sets `data-theme="dark"` attribute on `:root`
 - Semantic CSS variables automatically update all components
 - No manual color overrides needed per component
+
+### App Data Fetching (Client-Side Rendering)
+
+The website uses a **Client-Side Rendering (CSR)** approach for app data:
+
+**Architecture:**
+
+```
+Browser → /apps-data → Cloudflare Function → iTunes API → Response
+```
+
+**Benefits:**
+
+- ✅ Fast initial page load (~50ms TTFB)
+- ✅ Progressive enhancement with emoji fallbacks
+- ✅ Excellent caching (12 hours CDN + 24 hours stale-while-revalidate)
+- ✅ Resilient to API failures (page still loads)
+- ✅ Simple to maintain and debug
+
+**Implementation:**
+
+1. **Cloudflare Pages Function** (`/functions/apps-data.js`):
+
+   - Endpoint: `GET /apps-data?id={appId}`
+   - Proxies requests to iTunes API to avoid CORS issues
+   - Input validation (numeric app IDs only)
+   - Method restriction (GET only)
+   - CORS preflight handling
+   - Multi-layer caching:
+     - Browser cache: 12 hours
+     - Stale-while-revalidate: 24 hours
+     - CDN cache: 12 hours
+   - Error handling with proper HTTP status codes
+
+2. **Client-Side JavaScript** (`script.js`):
+   - `fetchAppData(appId)`: Fetches app data from `/apps-data`
+   - `updateAppCard()`: Updates DOM with app icon, name, tagline
+   - `updateNCLLogo()`: Updates project logo
+   - `loadApps()`: Main function that:
+     - Fetches all app data sequentially
+     - Caches results in `appDataCache` object
+     - Updates app cards as data arrives
+     - Reuses cached NCL data for logo (avoids duplicate API call)
+
+**Progressive Enhancement:**
+
+- HTML contains static fallback content (emojis, default names)
+- JavaScript enhances with real data when available
+- Site remains functional if JavaScript fails or API is down
+
+**Performance Characteristics:**
+
+- Initial HTML load: ~50ms
+- App data loads: ~200-500ms (cached after first visit)
+- No server-side rendering delay
+- Optimal for portfolio/marketing sites
+
+**Security Features:**
+
+- Input validation (app IDs must be numeric)
+- HTTP method restriction (GET and OPTIONS only)
+- CORS headers properly configured
+- User-Agent identification
+- Error logging for debugging
+- No API keys or secrets required (iTunes API is public)
+
+**Why Not Server-Side Rendering (SSR)?**
+
+SSR was considered but rejected because:
+
+- ❌ Slower initial page load (waiting for API calls before HTML)
+- ❌ Can't cache full HTML effectively (data changes)
+- ❌ More complex implementation and maintenance
+- ❌ Cold start issues on edge functions
+- ❌ Higher function execution costs
+- ✅ CSR provides better user experience for this use case
