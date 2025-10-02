@@ -1328,6 +1328,82 @@ body {
     border: none;
 }
 
+/* Video Placeholder */
+.video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.video-placeholder:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.video-placeholder:focus {
+    outline: 2px solid var(--accent-green);
+    outline-offset: 2px;
+}
+
+.video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-md);
+}
+
+.play-button {
+    position: relative;
+    z-index: 2;
+    width: 56px;
+    height: 56px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    backdrop-filter: blur(4px);
+}
+
+.play-button svg {
+    width: 32px;
+    height: 32px;
+    color: white;
+    margin-left: 3px; /* Slight offset for visual centering */
+}
+
+.video-placeholder:hover .play-button {
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+/* Dark theme adjustments */
+:root[data-theme="dark"] .video-placeholder:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] .play-button {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+:root[data-theme="dark"] .play-button svg {
+    color: black;
+}
+
+:root[data-theme="dark"] .video-placeholder:hover .play-button {
+    background-color: rgba(255, 255, 255, 1);
+}
+
 .portfolio-items {
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -357,11 +357,20 @@
 
                 <div class="video-section">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/nhWBNjzv_6g?rel=0&modestbranding=1&showinfo=0"
-                            loading="lazy" title="How I became a Software Developer without CS degree or bootcamp"
-                            frameborder="0"
+                        <div class="video-placeholder" onclick="loadVideo()">
+                            <img src="https://img.youtube.com/vi/nhWBNjzv_6g/maxresdefault.jpg"
+                                alt="How I became a Software Developer without CS degree or bootcamp"
+                                class="video-thumbnail">
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <iframe id="youtube-iframe" src=""
+                            title="How I became a Software Developer without CS degree or bootcamp" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
+                            allowfullscreen style="display: none;">
                         </iframe>
                     </div>
                 </div>

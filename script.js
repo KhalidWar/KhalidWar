@@ -162,6 +162,22 @@ function updateThemeIcon(theme) {
   }
 }
 
+// Function to load YouTube video when clicked
+function loadVideo() {
+  const placeholder = document.querySelector(".video-placeholder");
+  const iframe = document.getElementById("youtube-iframe");
+
+  if (placeholder && iframe) {
+    // Set the iframe source to load the video
+    iframe.src =
+      "https://www.youtube.com/embed/nhWBNjzv_6g?rel=0&modestbranding=1&showinfo=0&autoplay=1";
+
+    // Hide placeholder and show iframe
+    placeholder.style.display = "none";
+    iframe.style.display = "block";
+  }
+}
+
 // Load apps and NCL logo when page loads
 document.addEventListener("DOMContentLoaded", function () {
   loadApps();
