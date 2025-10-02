@@ -53,7 +53,9 @@ export async function onRequest(context) {
     const itunesUrl = `https://itunes.apple.com/lookup?id=${appId}`;
     const response = await fetch(itunesUrl, {
       headers: {
-        "User-Agent": "khalidwar.com/1.0",
+        "User-Agent": "Mozilla/5.0 (compatible; khalidwar.com/1.0)",
+        "Accept": "application/json",
+        "Accept-Language": "en-US,en;q=0.9",
       },
     });
 
