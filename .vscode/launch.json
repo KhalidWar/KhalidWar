@@ -4,9 +4,17 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Run Locally",
+      "name": "Main Site",
       "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
       "file": "${workspaceFolder}/index.html",
+      "userDataDir": true
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Bio Page",
+      "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+      "file": "${workspaceFolder}/bio/index.html",
       "userDataDir": true
     }
   ]

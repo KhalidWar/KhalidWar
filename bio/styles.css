@@ -1,0 +1,508 @@
+/**
+ * Bio Page Specific Styles
+ * Follows agent.md design principles:
+ * - Semantic color system
+ * - 8px spacing grid
+ * - Component-based architecture
+ * - Brand-accurate colors
+ * - Bento grid layout
+ */
+
+/* ====================
+   Bento Grid Layout
+   Following main site's bento grid architecture
+   ==================== */
+
+/* Bio page uses a simpler 2-column grid optimized for link-in-bio */
+.bento-grid {
+    display: grid;
+    gap: var(--spacing-8);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        "hero hero"
+        "products products"
+        "videos videos";
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-8);
+}
+
+.bento-box.hero {
+    grid-area: hero;
+}
+
+.bento-box.affiliate-products {
+    grid-area: products;
+}
+
+.bento-box.featured-videos {
+    grid-area: videos;
+}
+
+/* Bento Box Content Spacing */
+.bento-box h2 {
+    margin-bottom: var(--spacing-4);
+    color: var(--text-primary);
+}
+
+/* ====================
+   Hero Section
+   ==================== */
+
+/* Services Description */
+.services-description {
+    margin-top: var(--spacing-24);
+    margin-bottom: 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+/* Hero CTA Button - Prominent placement */
+.hero-cta-button {
+    margin-top: var(--spacing-16);
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: var(--spacing-16) var(--spacing-24);
+}
+
+/* ====================
+   Social Stat Cards
+   Following service-tag pattern from main site
+   ==================== */
+
+.social-stats-row {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    gap: var(--spacing-12);
+    margin-top: var(--spacing-24);
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.social-stat-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background-color: var(--card-bg);
+    padding: var(--spacing-12);
+    border-radius: var(--border-radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border: 1px solid var(--card-border);
+    transition: var(--transition);
+    text-decoration: none;
+    flex: 1;
+    min-width: 0;
+    min-height: 56px;
+}
+
+.social-stat-card:hover {
+    background-color: var(--card-bg-hover);
+    transform: var(--hover-transform);
+}
+
+.social-stat-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-stat-count {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1;
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When count is visible, slide it in from the right */
+.social-stat-card.has-count {
+    gap: var(--spacing-8);
+}
+
+.social-stat-card.has-count .social-stat-icon {
+    transform: scale(0.7);
+}
+
+.social-stat-card.has-count .social-stat-count {
+    opacity: 1;
+    max-width: 60px;
+}
+
+/* Brand colors that persist on hover - following agent.md patterns */
+.social-stat-card:hover[href*="youtube"] .social-stat-icon {
+    fill: #ff0000;
+}
+
+.social-stat-card:hover[href*="instagram"] .social-stat-icon {
+    fill: #e4405f;
+}
+
+.social-stat-card:hover[href*="twitter"] .social-stat-icon,
+.social-stat-card:hover[href*="x.com"] .social-stat-icon {
+    fill: #1da1f2;
+}
+
+/* TikTok: Black in light mode, White in dark mode */
+.social-stat-card[href*="tiktok"] .social-stat-icon {
+    fill: #000000;
+}
+
+:root[data-theme="dark"] .social-stat-card[href*="tiktok"] .social-stat-icon {
+    fill: #ffffff;
+}
+
+.social-stat-card:hover[href*="tiktok"] .social-stat-icon {
+    fill: #000000;
+}
+
+:root[data-theme="dark"] .social-stat-card:hover[href*="tiktok"] .social-stat-icon {
+    fill: #ffffff;
+}
+
+/* ====================
+   Category Carousel
+   Following agent.md component patterns
+   Static cards - no API dependency
+   ==================== */
+
+.product-carousel {
+    position: relative;
+    margin-top: var(--spacing-16);
+}
+
+.carousel-track {
+    display: flex;
+    gap: var(--spacing-16);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+    padding: var(--spacing-4) 0;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+.category-card {
+    flex: 0 0 auto;
+    width: 260px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    text-decoration: none;
+    scroll-snap-align: start;
+}
+
+.category-card:hover {
+    background-color: var(--card-bg-hover);
+    transform: var(--hover-transform);
+}
+
+.category-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: var(--spacing-16);
+}
+
+/* Dim product images in dark mode to reduce brightness */
+:root[data-theme="dark"] .category-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    z-index: 1;
+}
+
+:root[data-theme="dark"] .category-image img {
+    position: relative;
+    z-index: 0;
+}
+
+.category-info {
+    padding: var(--spacing-12) var(--spacing-16);
+}
+
+.category-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--btn-container-lg);
+    height: var(--btn-container-lg);
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 2;
+    color: var(--text-primary);
+}
+
+.carousel-btn:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    border-color: var(--button-hover-border);
+}
+
+.carousel-btn.prev {
+    left: calc(var(--spacing-8) * -1);
+}
+
+.carousel-btn.next {
+    right: calc(var(--spacing-8) * -1);
+}
+
+.carousel-btn svg {
+    width: var(--icon-lg);
+    height: var(--icon-lg);
+}
+
+/* ====================
+   Video Section Styling
+   Following agent.md performance principles
+   ==================== */
+
+.video-section {
+    margin-top: var(--spacing-24);
+}
+
+.video-section:first-of-type {
+    margin-top: var(--spacing-16);
+}
+
+.video-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-8);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    background-color: var(--card-bg);
+}
+
+.video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.video-placeholder:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.video-placeholder:focus {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+}
+
+.video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.play-button {
+    position: relative;
+    z-index: 2;
+    width: 56px;
+    height: 56px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.play-button svg {
+    width: 32px;
+    height: 32px;
+    color: white;
+    margin-left: 3px;
+    /* Slight offset for visual centering */
+}
+
+.video-placeholder:hover .play-button {
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+/* Dark theme adjustments */
+:root[data-theme="dark"] .video-placeholder:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] .play-button {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+:root[data-theme="dark"] .play-button svg {
+    color: black;
+}
+
+:root[data-theme="dark"] .video-placeholder:hover .play-button {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* ====================
+   Responsive Design - Bento Grid Breakpoints
+   Following main site's responsive strategy
+   ==================== */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    .bento-grid {
+        gap: var(--spacing-8);
+        padding: 0 var(--spacing-8);
+    }
+
+    .carousel-btn {
+        display: none;
+        /* Hide arrows on mobile, use touch scroll */
+    }
+
+    .category-card {
+        width: 220px;
+    }
+
+    .video-section {
+        margin-top: var(--spacing-24);
+    }
+
+    .play-button {
+        width: 48px;
+        height: 48px;
+    }
+
+    .play-button svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .hero-cta-button {
+        font-size: 0.9375rem;
+        padding: var(--spacing-12) var(--spacing-16);
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "hero"
+            "products"
+            "videos";
+        gap: var(--spacing-8);
+        padding: 0 var(--spacing-8);
+    }
+
+    .social-stats-row {
+        gap: var(--spacing-8);
+        flex-wrap: nowrap;
+    }
+
+    .social-stat-card {
+        padding: var(--spacing-8);
+        min-height: 48px;
+    }
+
+    .social-stat-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .social-stat-count {
+        font-size: 0.8125rem;
+    }
+
+    .social-stat-card.has-count {
+        gap: var(--spacing-6);
+    }
+
+    .social-stat-card.has-count .social-stat-icon {
+        transform: scale(0.7);
+    }
+
+    .social-stat-card.has-count .social-stat-count {
+        max-width: 50px;
+    }
+
+    .category-card {
+        width: 180px;
+    }
+
+    .video-section {
+        margin-top: var(--spacing-16);
+    }
+
+    .video-title {
+        font-size: 1rem;
+    }
+}
