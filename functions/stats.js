@@ -1,5 +1,5 @@
 /**
- * Cloudflare Pages Function: social-stats.js
+ * Cloudflare Pages Function: stats.js
  *
  *  - Fetches social follower counts from public pages
  *  - Stores in KV (SOCIAL_KV) so frontend always has last known good data
@@ -9,38 +9,40 @@
  *  - KV Namespace: SOCIAL_KV
  */
 
-export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
+// Cloudflare Pages Function at /stats
+export async function onRequest(context) {
+  const { env } = context;
 
-    // Serve cached stats
-    if (url.pathname === "/api/stats") {
-      const latest = await env.SOCIAL_KV.get("latestCounts");
-      if (latest) {
-        return new Response(latest, {
-          headers: { "Content-Type": "application/json" },
-        });
-      }
-      return new Response(JSON.stringify({ error: "No cached data yet" }), {
-        status: 503,
-      });
-    }
+  // Serve cached stats from KV
+  const latest = await env.SOCIAL_KV.get("latestCounts");
+  if (latest) {
+    return new Response(latest, {
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "public, max-age=3600",
+      },
+    });
+  }
 
-    return new Response("Not found", { status: 404 });
-  },
+  // No cached data yet
+  return new Response(JSON.stringify({ error: "No cached data yet" }), {
+    status: 503,
+    headers: { "Content-Type": "application/json" },
+  });
+}
 
-  async scheduled(event, env, ctx) {
-    const stats = await fetchAll();
-    const now = new Date().toISOString();
+// Scheduled handler for cron trigger
+export async function onScheduled(event, env, ctx) {
+  const stats = await fetchAll();
+  const now = new Date().toISOString();
 
-    const payload = JSON.stringify({ updatedAt: now, ...stats });
+  const payload = JSON.stringify({ updatedAt: now, ...stats });
 
-    // Save to KV
-    await env.SOCIAL_KV.put("latestCounts", payload);
+  // Save to KV
+  await env.SOCIAL_KV.put("latestCounts", payload);
 
-    console.log("Social stats updated:", payload);
-  },
-};
+  console.log("Social stats updated:", payload);
+}
 
 /**
  * Fetch all platforms

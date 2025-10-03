@@ -25,7 +25,7 @@ function loadVideo(videoId, element) {
 // Load social stats progressively
 async function loadSocialStats() {
   try {
-    const response = await fetch("/api/stats");
+    const response = await fetch("/stats");
     if (!response.ok) throw new Error("Failed to fetch stats");
 
     const data = await response.json();
