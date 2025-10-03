@@ -1,0 +1,23 @@
+# Development
+node_modules/
+.DS_Store
+
+# Editor
+.vscode/*
+!.vscode/launch.json
+
+# Environment
+.env
+.env.local
+
+# Build
+dist/
+.cache/
+
+# Cloudflare
+.wrangler/
+wrangler.toml
+
+# Logs
+*.log
+
