@@ -2089,7 +2089,9 @@ body {
     *:hover {
         transform: none !important;
     }
-}/**
+}
+
+/**
  * Bio Page Specific Styles
  * Follows agent.md design principles:
  * - Semantic color system
@@ -2151,12 +2153,21 @@ body {
     line-height: 1.6;
 }
 
-/* Hero CTA Button - Prominent placement */
+/* Hero CTA Button - Prominent placement (Primary Action) */
 .hero-cta-button {
     margin-top: var(--spacing-16);
     width: 100%;
     font-size: 1rem;
     font-weight: 600;
+    padding: var(--spacing-16) var(--spacing-24);
+}
+
+/* Secondary CTA Button - Same styling as primary, lighter weight */
+.secondary-cta-button {
+    margin-top: var(--spacing-12);
+    width: 100%;
+    font-size: 0.9375rem;
+    font-weight: 400;
     padding: var(--spacing-16) var(--spacing-24);
 }
 
@@ -2182,7 +2193,7 @@ body {
     justify-content: center;
     gap: 0;
     background-color: var(--card-bg);
-    padding: var(--spacing-12);
+    padding: var(--spacing-8);
     border-radius: var(--border-radius-md);
     font-size: 0.875rem;
     font-weight: 600;
@@ -2192,7 +2203,7 @@ body {
     text-decoration: none;
     flex: 1;
     min-width: 0;
-    min-height: 56px;
+    min-height: 52px;
 }
 
 .social-stat-card:hover {
@@ -2221,7 +2232,7 @@ body {
 
 /* When count is visible, slide it in from the right */
 .social-stat-card.has-count {
-    gap: var(--spacing-8);
+    gap: var(--spacing-2);
 }
 
 .social-stat-card.has-count .social-stat-icon {
@@ -2230,7 +2241,7 @@ body {
 
 .social-stat-card.has-count .social-stat-count {
     opacity: 1;
-    max-width: 60px;
+    max-width: 100px;
 }
 
 /* Brand colors that persist on hover - following agent.md patterns */
@@ -2539,6 +2550,11 @@ body {
         font-size: 0.9375rem;
         padding: var(--spacing-12) var(--spacing-16);
     }
+
+    .secondary-cta-button {
+        font-size: 0.875rem;
+        padding: var(--spacing-12) var(--spacing-16);
+    }
 }
 
 /* Mobile (480px and below) */
@@ -2560,8 +2576,8 @@ body {
     }
 
     .social-stat-card {
-        padding: var(--spacing-8);
-        min-height: 48px;
+        padding: var(--spacing-6);
+        min-height: 44px;
     }
 
     .social-stat-icon {
@@ -2574,7 +2590,7 @@ body {
     }
 
     .social-stat-card.has-count {
-        gap: var(--spacing-6);
+        gap: var(--spacing-2);
     }
 
     .social-stat-card.has-count .social-stat-icon {
@@ -2582,7 +2598,7 @@ body {
     }
 
     .social-stat-card.has-count .social-stat-count {
-        max-width: 50px;
+        max-width: 80px;
     }
 
     .category-card {

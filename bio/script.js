@@ -223,6 +223,22 @@ function loadVideo(videoId, element) {
 
 // Load social stats progressively
 async function loadSocialStats() {
+  // Use dummy data if testing locally (file:// protocol)
+  if (window.location.protocol === "file:") {
+    console.info("Social stats: Using local dummy data");
+    // Simulate network delay
+    setTimeout(() => {
+      const dummyData = {
+        youtube: { subscribers: 1000 },
+        instagram: { followers: 10000 },
+        tiktok: { followers: 100000 },
+        twitter: { followers: 1000000 },
+      };
+      updateSocialCounts(dummyData);
+    }, 500); // 1 second delay to simulate API
+    return;
+  }
+
   try {
     const response = await fetch("/stats");
     if (!response.ok) throw new Error("Failed to fetch stats");
