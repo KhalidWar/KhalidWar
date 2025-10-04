@@ -17,3 +17,6 @@ resume.pdf
 # Git files
 .git
 .gitignore
+
+# Workers (deploy separately)
+workers/
