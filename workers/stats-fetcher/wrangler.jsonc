@@ -1,5 +1,14 @@
 {
   "name": "stats-fetcher",
   "main": "index.js",
-  "compatibility_date": "2025-10-04"
+  "compatibility_date": "2025-10-04",
+  "triggers": {
+    "crons": ["0 0 * * *"]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "SOCIAL_KV",
+      "id": "3dcf89b70a314f7685ccaf9cd9d0887a"
+    }
+  ]
 }
