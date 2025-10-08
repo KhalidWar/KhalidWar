@@ -22,15 +22,83 @@ export default {
 
 /**
  * Update stats and store in KV
+ * Only updates values that were successfully fetched (non-zero)
+ * Preserves existing values if fetch fails or returns 0
  */
 async function updateStats(env) {
-  const stats = await fetchAll();
+  const newStats = await fetchAll();
   const now = new Date().toISOString();
 
-  const payload = JSON.stringify({ updatedAt: now, ...stats });
+  // Fetch existing data from KV
+  const existingData = await env.SOCIAL_KV.get("latestCounts", "json");
+  const existingStats = existingData || {};
 
-  await env.SOCIAL_KV.put("latestCounts", payload);
-  console.log("Social stats updated:", payload);
+  // Merge: only update if new value is valid (> 0 and no error)
+  const mergedStats = {
+    youtube: mergeStatsField(
+      existingStats.youtube,
+      newStats.youtube,
+      "subscribers"
+    ),
+    instagram: mergeStatsField(
+      existingStats.instagram,
+      newStats.instagram,
+      "followers"
+    ),
+    tiktok: mergeStatsField(existingStats.tiktok, newStats.tiktok, "followers"),
+    twitter: mergeStatsField(
+      existingStats.twitter,
+      newStats.twitter,
+      "followers"
+    ),
+  };
+
+  const payload = { updatedAt: now, ...mergedStats };
+
+  await env.SOCIAL_KV.put("latestCounts", JSON.stringify(payload));
+  console.log("Social stats updated:", JSON.stringify(payload));
+  console.log(
+    "Preserved values:",
+    getPreservedFields(existingStats, mergedStats)
+  );
+}
+
+/**
+ * Merge a single platform's stats
+ * Returns new stats if valid, otherwise keeps existing stats
+ */
+function mergeStatsField(existingField, newField, countKey) {
+  // If new field has error or zero value, keep existing
+  if (!newField || newField.error || newField[countKey] === 0) {
+    if (existingField && existingField[countKey] > 0) {
+      return existingField; // Keep existing valid value
+    }
+  }
+
+  // Otherwise use new value
+  return newField;
+}
+
+/**
+ * Log which fields were preserved from existing data
+ */
+function getPreservedFields(existing, merged) {
+  const preserved = [];
+
+  if (existing.youtube && merged.youtube === existing.youtube) {
+    preserved.push("youtube");
+  }
+  if (existing.instagram && merged.instagram === existing.instagram) {
+    preserved.push("instagram");
+  }
+  if (existing.tiktok && merged.tiktok === existing.tiktok) {
+    preserved.push("tiktok");
+  }
+  if (existing.twitter && merged.twitter === existing.twitter) {
+    preserved.push("twitter");
+  }
+
+  return preserved.length > 0 ? preserved.join(", ") : "none";
 }
 
 /**
