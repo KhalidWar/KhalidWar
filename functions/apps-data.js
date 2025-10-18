@@ -1,16 +1,12 @@
 /**
  * Cloudflare Pages Function: apps-data.js
  * --------------------------------------------------------
- * Fetches iTunes App Store API data for a given app ID.
- * Caches the full raw JSON response in KV.
+ * Reads cached iTunes App Store API data from KV.
+ * Data is populated by the apps-fetcher worker (runs daily).
  *
  * Bindings required:
  *   KV Namespace: APPS_KV
- *
- * Updated: Redeploy to fix KV binding access
  */
-
-const CACHE_TTL = 60 * 60 * 12; // 12 hours in seconds
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -35,43 +31,11 @@ export async function onRequest(context) {
   const cacheKey = `app:${appId}`;
 
   try {
-    // 1️⃣ Check cached data
+    // Read data from KV (populated by apps-fetcher worker)
     const cached = await env.APPS_KV.get(cacheKey, { type: "json" });
-    if (cached && cached.fetchedAt > Date.now() - CACHE_TTL * 1000) {
-      return jsonResponse(cached.data, 200, true);
-    }
-
-    // 2️⃣ Fetch fresh iTunes API data
-    const itunesUrl = `https://itunes.apple.com/lookup?id=${appId}`;
-    const response = await fetch(itunesUrl, {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; khalidwar.com/1.0)",
-        Accept: "application/json",
-        "Accept-Language": "en-US,en;q=0.9",
-      },
-    });
-
-    if (!response.ok) throw new Error(`iTunes API returned ${response.status}`);
-
-    const rawData = await response.json();
-    const app = rawData?.results?.[0];
-    if (!app) throw new Error("App not found in iTunes response");
-
-    // 3️⃣ Cache the full raw JSON response
-    await env.APPS_KV.put(
-      cacheKey,
-      JSON.stringify({ data: rawData, fetchedAt: Date.now() })
-    );
-
-    // 4️⃣ Return the full raw JSON response
-    return jsonResponse(rawData, 200);
+    return jsonResponse(cached.data, 200, true);
   } catch (error) {
-    console.error("App Store Fetch Error:", error);
-
-    // 5️⃣ Fallback: try stale cached data
-    const cached = await env.APPS_KV.get(cacheKey, { type: "json" });
-    if (cached) return jsonResponse(cached.data, 200, true);
-
+    console.error("KV Read Error:", error);
     return jsonResponse({ error: error.message }, 500);
   }
 }
