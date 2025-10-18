@@ -16,6 +16,14 @@
       "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
       "file": "${workspaceFolder}/bio/index.html",
       "userDataDir": true
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Resume Page",
+      "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+      "file": "${workspaceFolder}/resume/index.html",
+      "userDataDir": true
     }
   ]
 }
