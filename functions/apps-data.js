@@ -6,6 +6,8 @@
  *
  * Bindings required:
  *   KV Namespace: APPS_KV
+ *
+ * Updated: Redeploy to fix KV binding access
  */
 
 const CACHE_TTL = 60 * 60 * 12; // 12 hours in seconds
