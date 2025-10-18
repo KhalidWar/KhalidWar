@@ -187,9 +187,9 @@ async function loadSocialStats() {
     setTimeout(() => {
       const dummyData = {
         youtube: { subscribers: 1000 },
-        instagram: { followers: 10000 },
-        tiktok: { followers: 100000 },
-        twitter: { followers: 1000000 },
+        instagram: { followers: 1000 },
+        tiktok: { followers: 10000 },
+        twitter: { followers: 10000 },
       };
       updateSocialCounts(dummyData);
     }, 500);
@@ -213,7 +213,8 @@ function updateSocialCounts(data) {
   // Format numbers with K/M suffix
   const formatCount = (num) => {
     if (num >= 1000000) return (num / 1000000).toFixed(1) + "M";
-    if (num >= 1000) return (num / 1000).toFixed(1) + "k";
+    if (num >= 10000) return Math.floor(num / 1000) + "k"; // 10k+ as whole thousands
+    if (num >= 1000) return (num / 1000).toFixed(1) + "k"; // under 10k keep one decimal
     return num.toString();
   };
 

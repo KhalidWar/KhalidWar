@@ -1288,13 +1288,13 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0;
-    background-color: var(--card-bg);
+    background-color: var(--bg-primary);
     padding: var(--spacing-4);
     border-radius: var(--border-radius-md);
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-primary);
-    border: 1px solid var(--card-border);
+    border: 1px solid var(--border-primary);
     transition: var(--transition);
     text-decoration: none;
     flex: 1;
@@ -1303,8 +1303,14 @@ body {
 }
 
 .social-stat-card:hover {
-    background-color: var(--card-bg-hover);
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    border-color: var(--button-hover-border);
     transform: var(--hover-transform);
+}
+
+.social-stat-card:hover .social-stat-count {
+    color: var(--button-hover-text);
 }
 
 .social-stat-icon {
