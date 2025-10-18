@@ -1,10 +1,10 @@
 /**
  * Cloudflare Pages Function: apps-data.js
- * - Fetches iTunes API data for given appId
- * - Caches JSON response in KV (APPS_KV) for reliability
- * - Falls back to last cached data if fetch fails
+ * --------------------------------------------------------
+ * Fetches iTunes App Store API data for a given app ID.
+ * Caches the full raw JSON response in KV.
  *
- * Binding needed in Dashboard:
+ * Bindings required:
  *   KV Namespace: APPS_KV
  */
 
@@ -15,41 +15,31 @@ export async function onRequest(context) {
 
   // Handle CORS preflight
   if (request.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: corsHeaders(),
-    });
+    return new Response(null, { status: 204, headers: corsHeaders() });
   }
 
   // Only GET allowed
   if (request.method !== "GET") {
-    return new Response(JSON.stringify({ error: "Method not allowed" }), {
-      status: 405,
-      headers: { ...corsHeaders(), "Content-Type": "application/json" },
-    });
+    return jsonResponse({ error: "Method not allowed" }, 405);
   }
 
   const url = new URL(request.url);
   const appId = url.searchParams.get("id");
 
-  if (!appId) {
-    return jsonResponse({ error: "Missing app ID parameter" }, 400);
-  }
-
-  if (!/^\d+$/.test(appId)) {
+  if (!appId) return jsonResponse({ error: "Missing app ID parameter" }, 400);
+  if (!/^\d+$/.test(appId))
     return jsonResponse({ error: "Invalid app ID format" }, 400);
-  }
 
   const cacheKey = `app:${appId}`;
 
   try {
-    // 1. Try KV cache first
+    // 1️⃣ Check cached data
     const cached = await env.APPS_KV.get(cacheKey, { type: "json" });
     if (cached && cached.fetchedAt > Date.now() - CACHE_TTL * 1000) {
-      return jsonResponse(cached.data, 200, true); // true = served from cache
+      return jsonResponse(cached.data, 200, true);
     }
 
-    // 2. Fetch fresh data from iTunes
+    // 2️⃣ Fetch fresh iTunes API data
     const itunesUrl = `https://itunes.apple.com/lookup?id=${appId}`;
     const response = await fetch(itunesUrl, {
       headers: {
@@ -59,32 +49,32 @@ export async function onRequest(context) {
       },
     });
 
-    if (!response.ok)
-      throw new Error(`iTunes API returned status: ${response.status}`);
+    if (!response.ok) throw new Error(`iTunes API returned ${response.status}`);
 
-    const data = await response.json();
+    const rawData = await response.json();
+    const app = rawData?.results?.[0];
+    if (!app) throw new Error("App not found in iTunes response");
 
-    // 3. Save to KV
+    // 3️⃣ Cache the full raw JSON response
     await env.APPS_KV.put(
       cacheKey,
-      JSON.stringify({ data, fetchedAt: Date.now() })
+      JSON.stringify({ data: rawData, fetchedAt: Date.now() })
     );
 
-    return jsonResponse(data, 200);
+    // 4️⃣ Return the full raw JSON response
+    return jsonResponse(rawData, 200);
   } catch (error) {
-    console.error("iTunes API Error:", error);
+    console.error("App Store Fetch Error:", error);
 
-    // 4. Fallback: serve stale cache if available
+    // 5️⃣ Fallback: try stale cached data
     const cached = await env.APPS_KV.get(cacheKey, { type: "json" });
-    if (cached) {
-      return jsonResponse(cached.data, 200, true); // served from stale cache
-    }
+    if (cached) return jsonResponse(cached.data, 200, true);
 
     return jsonResponse({ error: error.message }, 500);
   }
 }
 
-// --- Helpers ---
+/** Helper: CORS Headers */
 function corsHeaders() {
   return {
     "Access-Control-Allow-Origin": "*",
@@ -94,6 +84,7 @@ function corsHeaders() {
   };
 }
 
+/** Helper: JSON Response */
 function jsonResponse(obj, status = 200, fromCache = false) {
   const headers = {
     ...corsHeaders(),
@@ -103,5 +94,5 @@ function jsonResponse(obj, status = 200, fromCache = false) {
     headers["Cache-Control"] =
       "public, max-age=43200, stale-while-revalidate=86400";
   }
-  return new Response(JSON.stringify(obj), { status, headers });
+  return new Response(JSON.stringify(obj, null, 2), { status, headers });
 }
