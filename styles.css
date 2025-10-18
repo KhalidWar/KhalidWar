@@ -1271,6 +1271,106 @@ body {
     transform: var(--hover-transform);
 }
 
+/* Social Stats Cards - Progressive follower count display */
+.social-stats-row {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    gap: var(--spacing-12);
+    margin-bottom: var(--spacing-16);
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.social-stat-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background-color: var(--card-bg);
+    padding: var(--spacing-4);
+    border-radius: var(--border-radius-md);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border: 1px solid var(--card-border);
+    transition: var(--transition);
+    text-decoration: none;
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+}
+
+.social-stat-card:hover {
+    background-color: var(--card-bg-hover);
+    transform: var(--hover-transform);
+}
+
+.social-stat-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-stat-count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1;
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When count is visible, slide it in from the right */
+.social-stat-card.has-count {
+    gap: var(--spacing-4);
+}
+
+.social-stat-card.has-count .social-stat-icon {
+    transform: scale(0.8);
+}
+
+.social-stat-card.has-count .social-stat-count {
+    opacity: 1;
+    max-width: 100px;
+}
+
+/* Brand colors that persist on hover - following agent.md patterns */
+.social-stat-card:hover[href*="youtube"] .social-stat-icon {
+    fill: #ff0000;
+}
+
+.social-stat-card:hover[href*="instagram"] .social-stat-icon {
+    fill: #e4405f;
+}
+
+.social-stat-card:hover[href*="twitter"] .social-stat-icon,
+.social-stat-card:hover[href*="x.com"] .social-stat-icon {
+    fill: #1da1f2;
+}
+
+/* TikTok: Black in light mode, White in dark mode */
+.social-stat-card[href*="tiktok"] .social-stat-icon {
+    fill: #000000;
+}
+
+:root[data-theme="dark"] .social-stat-card[href*="tiktok"] .social-stat-icon {
+    fill: #ffffff;
+}
+
+.social-stat-card:hover[href*="tiktok"] .social-stat-icon {
+    fill: #000000;
+}
+
+:root[data-theme="dark"] .social-stat-card:hover[href*="tiktok"] .social-stat-icon {
+    fill: #ffffff;
+}
+
 /* Work Section */
 .work {
     grid-area: work;
@@ -1984,6 +2084,10 @@ body {
         padding: var(--spacing-8);
     }
 
+    .social-stats-row {
+        gap: var(--spacing-8);
+    }
+
 
     .name {
         font-size: 1.75rem;
@@ -2081,6 +2185,20 @@ body {
 
     .bento-box {
         padding: var(--spacing-24);
+    }
+
+    .social-stats-row {
+        gap: var(--spacing-8);
+    }
+
+    .social-stat-card {
+        min-height: 40px;
+        padding: var(--spacing-4);
+    }
+
+    .social-stat-icon {
+        width: 20px;
+        height: 20px;
     }
 }
 

@@ -178,9 +178,76 @@ function loadVideo() {
   }
 }
 
+// Load social stats progressively
+async function loadSocialStats() {
+  // Use dummy data if testing locally (file:// protocol)
+  if (window.location.protocol === "file:") {
+    console.info("Social stats: Using local dummy data");
+    // Simulate network delay
+    setTimeout(() => {
+      const dummyData = {
+        youtube: { subscribers: 1000 },
+        instagram: { followers: 10000 },
+        tiktok: { followers: 100000 },
+        twitter: { followers: 1000000 },
+      };
+      updateSocialCounts(dummyData);
+    }, 500);
+    return;
+  }
+
+  try {
+    const response = await fetch("/stats");
+    if (!response.ok) throw new Error("Failed to fetch stats");
+
+    const data = await response.json();
+    updateSocialCounts(data);
+  } catch (error) {
+    console.warn("Could not load social stats:", error);
+    // Fail silently - page works fine without counts
+  }
+}
+
+// Update UI with social counts
+function updateSocialCounts(data) {
+  // Format numbers with K/M suffix
+  const formatCount = (num) => {
+    if (num >= 1000000) return (num / 1000000).toFixed(1) + "M";
+    if (num >= 1000) return (num / 1000).toFixed(1) + "k";
+    return num.toString();
+  };
+
+  // Update each platform's count
+  const platforms = {
+    youtube: data.youtube?.subscribers,
+    instagram: data.instagram?.followers,
+    tiktok: data.tiktok?.followers,
+    twitter: data.twitter?.followers,
+  };
+
+  Object.entries(platforms).forEach(([platform, count]) => {
+    if (count) {
+      const card = document.querySelector(
+        `.social-stat-card[data-platform="${platform}"]`
+      );
+      if (card) {
+        const countElement = card.querySelector(".social-stat-count");
+        countElement.textContent = formatCount(count);
+        // Trigger transition after browser has rendered
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            card.classList.add("has-count");
+          });
+        });
+      }
+    }
+  });
+}
+
 // Load apps and NCL logo when page loads
 document.addEventListener("DOMContentLoaded", function () {
   loadApps();
+  loadSocialStats();
 
   // Initialize theme
   initializeTheme();
