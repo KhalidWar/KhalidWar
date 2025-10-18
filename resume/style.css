@@ -1,0 +1,800 @@
+/* CSS Variables - Color Scheme (Matching Main Website) */
+:root {
+    /* Base colors */
+    --white: #ffffff;
+    --black: #000000;
+
+    /* Gray scale */
+    --gray-100: #f5f5f5;
+    --gray-200: #e5e5e5;
+    --gray-300: #d4d4d4;
+    --gray-400: #a3a3a3;
+    --gray-500: #737373;
+    --gray-600: #525252;
+    --gray-700: #404040;
+    --gray-800: #262626;
+    --gray-900: #171717;
+
+    /* Page format - Letter standard (enforced) */
+    --page-width: 8.5in;
+    --page-height: 11in;
+    --page-padding: 1in;
+
+    /* Semantic colors - Light Theme */
+    --bg-primary: var(--white);
+    --bg-secondary: var(--gray-100);
+    --bg-tertiary: var(--gray-200);
+
+    --text-primary: var(--black);
+    --text-secondary: var(--gray-600);
+    --text-tertiary: var(--gray-500);
+
+    --border-primary: var(--gray-200);
+    --border-secondary: var(--gray-300);
+
+    --card-bg: var(--gray-100);
+    --card-bg-hover: var(--gray-200);
+    --card-border: var(--gray-200);
+
+    --button-bg: var(--white);
+    --button-text: var(--black);
+    --button-border: var(--gray-200);
+    --button-hover-bg: var(--black);
+    --button-hover-text: var(--white);
+    --button-hover-border: var(--black);
+
+    /* Spacing Scale: Follows strict 8px grid system */
+    --spacing-0: 0;
+    --spacing-4: 0.25rem;
+    /* 4px  - Minimal */
+    --spacing-8: 0.5rem;
+    /* 8px  - Tight */
+    --spacing-12: 0.75rem;
+    /* 12px - Standard */
+    --spacing-16: 1rem;
+    /* 16px - Comfortable */
+    --spacing-24: 1.5rem;
+    /* 24px - Section */
+    --spacing-32: 2rem;
+    /* 32px - Large */
+    --spacing-40: 2.5rem;
+    /* 40px - XL */
+
+    /* Border Radius Scale - 4px increments */
+    --border-radius-sm: 8px;
+    /* Small elements */
+    --border-radius-md: 12px;
+    /* Medium elements */
+    --border-radius-lg: 16px;
+    /* Large boxes */
+    --border-radius-xl: 20px;
+    /* Extra large */
+
+    /* Component Sizes */
+    --button-height: 48px;
+    --button-padding: var(--spacing-12) var(--spacing-24);
+
+    /* Icon Sizes - Standardized across all components */
+    --icon-sm: 16px;
+    /* Small icons (skills, badges) */
+    --icon-md: 20px;
+    /* Medium icons (social links, buttons) */
+    --icon-lg: 24px;
+    /* Large icons (featured elements) */
+
+    /* Button/Link Container Sizes */
+    --btn-container-sm: 32px;
+    /* Compact buttons (hero links) */
+    --btn-container-md: 40px;
+    /* Standard buttons (most links) */
+    --btn-container-lg: 48px;
+    /* Large buttons (nav, primary CTAs) */
+
+    /* Transitions */
+    --hover-transform: translateY(-2px);
+    --transition-fast: all 0.2s ease;
+    --transition: all 0.3s ease;
+    --transition-slow: all 0.4s ease;
+}
+
+/* Dark Theme Color Overrides */
+:root[data-theme="dark"] {
+    /* Semantic colors - Dark Theme */
+    --bg-primary: var(--black);
+    --bg-secondary: var(--gray-900);
+    --bg-tertiary: var(--gray-800);
+
+    --text-primary: var(--white);
+    --text-secondary: var(--gray-400);
+    --text-tertiary: var(--gray-500);
+
+    --border-primary: var(--gray-700);
+    --border-secondary: var(--gray-600);
+
+    --card-bg: var(--gray-800);
+    --card-bg-hover: var(--gray-700);
+    --card-border: var(--gray-700);
+
+    --button-bg: var(--gray-800);
+    --button-text: var(--white);
+    --button-border: var(--gray-700);
+    --button-hover-bg: var(--white);
+    --button-hover-text: var(--black);
+    --button-hover-border: var(--white);
+}
+
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Skip to Content Link - Accessibility */
+.skip-to-content {
+    position: absolute;
+    top: -100px;
+    left: 10px;
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    padding: 12px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 10000;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+    top: 10px;
+}
+
+/* Body Layout - Two column with sticky sidebar */
+body {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sticky Left Sidebar */
+.resume-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border-primary);
+    padding: 2rem 1.5rem;
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidebar-content h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+}
+
+.sidebar-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0 0 2rem 0;
+    line-height: 1.4;
+}
+
+.sidebar-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.control-group-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sidebar-controls .btn-toolbar {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sidebar-controls .btn-toolbar svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* Icon-only buttons */
+.btn-icon {
+    width: 40px !important;
+    height: 40px;
+    padding: 0.5rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Active state for formatting buttons */
+.btn-icon.active {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    border-color: var(--button-hover-border);
+}
+
+.btn-icon.active svg {
+    fill: var(--button-hover-text);
+}
+
+/* Format text, alignment, and lists buttons - display inline */
+.control-group:first-child .control-group-buttons,
+.control-group:nth-child(2) .control-group-buttons,
+.control-group:nth-child(3) .control-group-buttons {
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+/* Actions group - bottom row, no label */
+.control-group-actions {
+    margin-top: auto;
+}
+
+.control-group-actions .control-group-buttons {
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: space-between;
+}
+
+/* Buttons */
+button {
+    all: unset;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: var(--spacing-12) var(--spacing-16);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-primary);
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    transition: var(--transition);
+}
+
+.btn-toolbar:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    border-color: var(--button-hover-border);
+}
+
+.btn-toolbar:active {
+    transform: scale(0.98);
+}
+
+.btn-toolbar svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Theme Icon */
+.theme-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.btn-theme:hover .theme-icon {
+    transform: rotate(180deg);
+}
+
+.btn-theme {
+    padding: 0.6rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Main content pushed to the right */
+.main-content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    background-color: var(--bg-secondary);
+}
+
+#resume-editor-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive: Laptop and above (1024px+) - Full functionality */
+@media (min-width: 1024px) {
+    #small-screen-warning {
+        display: none !important;
+    }
+
+    #resume-editor-container {
+        display: flex !important;
+    }
+}
+
+/* Responsive: Below laptop size (under 1024px) - Show warning only */
+@media (max-width: 1023px) {
+    .resume-sidebar {
+        display: none !important;
+    }
+
+    #resume-editor-container {
+        display: none !important;
+    }
+
+    #small-screen-warning {
+        display: flex !important;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Resume Document - True 1:1 Letter Dimensions */
+.resume-document {
+    /* Exact Letter dimensions: 8.5 × 11 inches = 816 × 1056 pixels @ 96 DPI */
+    width: var(--page-width);
+    height: var(--page-height);
+    min-width: var(--page-width);
+    min-height: var(--page-height);
+    max-width: var(--page-width);
+    max-height: var(--page-height);
+    padding: var(--page-padding);
+    padding-bottom: 1in !important;
+    /* enforce exact bottom padding during export */
+
+    /* Styling */
+    background-color: var(--white);
+    color: var(--black);
+    margin: 2rem auto;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    font-size: 10.5pt;
+    line-height: 1.4;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+    /* Ensure accurate rendering */
+    box-sizing: border-box;
+    overflow: hidden;
+    transform-origin: top center;
+    scale: 1;
+    page-break-after: always;
+
+    /* Force hardware acceleration for crisp rendering */
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Export-only cleanup to avoid visual decorations affecting capture */
+.resume-document.export-mode {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    /* Match original resume font metrics during export */
+    font-family: 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* Responsive scaling for smaller screens */
+@media screen and (max-width: 1200px) {
+    .resume-document {
+        scale: 0.9;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .resume-document {
+        scale: 0.85;
+    }
+}
+
+/* Container: prevent squishing and enable scrolling */
+#resume-editor-container {
+    display: flex !important;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    overflow-x: auto;
+    background-color: var(--bg-secondary);
+}
+
+.resume-header {
+    text-align: left;
+    margin-bottom: 0.35in;
+    padding-bottom: 0;
+}
+
+.resume-document h1 {
+    font-size: 18pt;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 0 0.1in 0;
+    letter-spacing: -0.5px;
+}
+
+.contact-line {
+    font-size: 9.5pt;
+    color: var(--black);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.resume-section {
+    margin-bottom: 0.3in;
+}
+
+.section-header {
+    font-size: 11pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--black);
+    margin: 0.3in 0 0.1in 0;
+    padding-bottom: 0.08in;
+    border-bottom: 1px solid var(--black);
+}
+
+/* Summary */
+.resume-text {
+    color: var(--black);
+    line-height: 1.4;
+    font-size: 10.5pt;
+    margin: 0 0 0.1in 0;
+}
+
+.resume-text strong {
+    color: var(--black);
+    font-weight: 600;
+}
+
+/* Experience */
+.resume-experience {
+    color: var(--black);
+}
+
+.experience-item {
+    margin-bottom: 0.15in;
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.02in;
+    font-size: 10.5pt;
+}
+
+.job-title {
+    font-weight: 600;
+    color: var(--black);
+}
+
+.job-location {
+    text-align: right;
+    color: var(--black);
+    font-size: 10.5pt;
+}
+
+.job-subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.08in;
+    font-size: 10pt;
+}
+
+.job-role {
+    font-weight: 600;
+    color: var(--black);
+    text-transform: uppercase;
+}
+
+.job-dates {
+    text-align: right;
+    color: var(--black);
+    font-size: 10pt;
+}
+
+.job-bullets {
+    margin: 0.08in 0 0 0;
+    padding: 0 0 0 0.25in;
+    list-style-type: disc;
+    list-style-position: outside;
+    color: var(--black);
+    font-size: 10.5pt;
+    line-height: 1.4;
+}
+
+/* Ensure consistent list styling for both ul and ol */
+.resume-document ul,
+.resume-document ol {
+    margin: 0.08in 0 0 0;
+    padding: 0 0 0 0.25in;
+    list-style-position: outside;
+}
+
+.resume-document ul {
+    list-style-type: disc;
+}
+
+.resume-document ol {
+    list-style-type: decimal;
+}
+
+.job-bullets li {
+    margin-bottom: 0.04in;
+}
+
+.job-bullets strong {
+    color: var(--black);
+    font-weight: 600;
+}
+
+/* Skills */
+.resume-skills {
+    color: var(--black);
+    font-size: 10.5pt;
+    line-height: 1.4;
+}
+
+.resume-skills p {
+    margin: 0.08in 0;
+}
+
+.resume-skills strong {
+    color: var(--black);
+    font-weight: 600;
+}
+
+/* Education */
+.resume-education {
+    font-size: 10.5pt;
+}
+
+.education-item {
+    margin-bottom: 0.1in;
+}
+
+.education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 10.5pt;
+    margin-bottom: 0.02in;
+}
+
+.school-name {
+    font-weight: 600;
+    color: var(--black);
+}
+
+.school-location {
+    text-align: right;
+    color: var(--black);
+}
+
+.education-degree {
+    color: var(--black);
+    font-style: italic;
+    font-size: 10pt;
+    margin: 0.02in 0 0 0;
+}
+
+/* Editable Fields */
+.editable-field {
+    outline: none;
+    position: relative;
+    transition: background-color 0.2s ease;
+    border-radius: 3px;
+    color: var(--black);
+}
+
+.editable-field:focus {
+    outline: 1.5px solid var(--button-hover-bg);
+    background-color: var(--bg-secondary);
+}
+
+/* Debug: Dimension verification overlay (toggle via console) */
+.resume-document.show-grid::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(to bottom,
+            rgba(255, 0, 0, 0.05) 0,
+            rgba(255, 0, 0, 0.05) 1in,
+            transparent 1in,
+            transparent 2in),
+        repeating-linear-gradient(to right,
+            rgba(255, 0, 0, 0.05) 0,
+            rgba(255, 0, 0, 0.05) 1in,
+            transparent 1in,
+            transparent 2in);
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Responsive Design - Resume document maintains fixed size, only container adjusts */
+
+/* Resume document maintains fixed size - no responsive adjustments */
+
+/* Page Setup - Exact Letter dimensions for print */
+@page {
+    size: 8.5in 11in;
+    margin: 0;
+}
+
+/* Print Styles - Ensure true Letter dimensions */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    body {
+        background-color: var(--white);
+        padding: 0;
+        margin: 0;
+    }
+
+    .container {
+        padding: 0;
+        min-height: auto;
+        background-color: var(--white);
+    }
+
+    .resume-sidebar,
+    .skip-to-content {
+        display: none !important;
+    }
+
+    .resume-document {
+        /* Exact Letter dimensions for print */
+        width: 8.5in !important;
+        height: 11in !important;
+        padding: 1in !important;
+        box-sizing: border-box !important;
+
+        /* Reset visual styles for print */
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        scale: 1 !important;
+        transform: none !important;
+
+        /* Ensure content fits */
+        overflow: hidden !important;
+        page-break-after: always !important;
+    }
+
+    .editable-field:focus {
+        outline: none !important;
+        background-color: transparent !important;
+    }
+}
+
+/* Small Screen Warning */
+.small-screen-warning {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--bg-secondary);
+    padding: var(--spacing-24);
+}
+
+.warning-content {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-32);
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.warning-icon {
+    width: 64px;
+    height: 64px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-16);
+}
+
+.warning-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-12);
+}
+
+.warning-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-12);
+    font-size: 0.95rem;
+}
+
+.current-width {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    margin-top: var(--spacing-16);
+    font-family: monospace;
+}
+
+/* Hide editor on screens smaller than 850px */
+@media (max-width: 849px) {
+    #resume-editor-container {
+        display: none !important;
+    }
+
+    .small-screen-warning {
+        display: flex !important;
+    }
+}
+
+/* Show editor on screens 850px and larger */
+@media (min-width: 850px) {
+    .small-screen-warning {
+        display: none !important;
+    }
+
+    #resume-editor-container {
+        display: block !important;
+    }
+}
+
+/* Resume Document - Base Styles */

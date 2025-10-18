@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Khalid Warsame - Resume Builder | Create, edit, and export your professional resume" />
+    <meta name="keywords" content="Resume Builder, Professional Resume, Khalid Warsame" />
+    <meta name="author" content="Khalid Warsame" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://resume.khalidwar.com/" />
+    <meta property="og:title" content="Khalid Warsame — Resume Builder" />
+    <meta property="og:description"
+        content="Create, edit, and export your professional resume with a beautiful WYSIWYG editor." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="../profile.webp" />
+    <link rel="apple-touch-icon" href="../profile.webp" />
+
+    <title>Resume Builder — Khalid Warsame</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"
+        media="print" onload="this.media='all'" />
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    </noscript>
+
+</head>
+
+<body>
+    <!-- Skip to main content for keyboard navigation -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Left Sidebar - Sticky -->
+    <aside class="resume-sidebar">
+        <div class="sidebar-content">
+            <h1>Resume Builder</h1>
+            <p class="sidebar-subtitle">Interactive. Try it out!</p>
+
+            <div class="sidebar-controls">
+                <!-- Text Formatting Group -->
+                <div class="control-group">
+                    <div class="control-group-buttons">
+                        <button id="bold-btn" class="btn-toolbar btn-icon" onclick="formatText('bold')"
+                            title="Bold (Ctrl+B)">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                <path
+                                    d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z" />
+                            </svg>
+                        </button>
+                        <button id="italic-btn" class="btn-toolbar btn-icon" onclick="formatText('italic')"
+                            title="Italic (Ctrl+I)">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                <path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z" />
+                            </svg>
+                        </button>
+                        <button id="underline-btn" class="btn-toolbar btn-icon" onclick="formatText('underline')"
+                            title="Underline (Ctrl+U)">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                <path
+                                    d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6zm-7 2v2h14v-2H5z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Text Alignment Group -->
+                <div class="control-group">
+                    <div class="control-group-buttons">
+                        <button id="align-left-btn" class="btn-toolbar btn-icon" onclick="formatText('justifyLeft')"
+                            title="Align Left">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                <path
+                                    d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z" />
+                            </svg>
+                        </button>
+                        <button id="align-center-btn" class="btn-toolbar btn-icon" onclick="formatText('justifyCenter')"
+                            title="Align Center">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                <path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z" />
+                            </svg>
+                        </button>
+                        <button id="align-right-btn" class="btn-toolbar btn-icon" onclick="formatText('justifyRight')"
+                            title="Align Right">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                <path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lists Group -->
+                <div class="control-group">
+                    <div class="control-group-buttons">
+                        <button id="bullet-list-btn" class="btn-toolbar btn-icon"
+                            onclick="formatText('insertUnorderedList')" title="Bullet List">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                <path
+                                    d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z" />
+                            </svg>
+                        </button>
+                        <button id="number-list-btn" class="btn-toolbar btn-icon"
+                            onclick="formatText('insertOrderedList')" title="Numbered List">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                <path
+                                    d="M2 17h2v.5H3v1h1v.5H2v1h3v-4H2v1zm1-9h1V4H2v1h1v3zm-1 3h1.8L2 13.1v.9h3v-1H3.2L5 10.9V10H2v1zm5-6v2h14V5H7zm0 14h14v-2H7v2zm0-6h14v-2H7v2z" />
+                            </svg>
+                        </button>
+                        <button id="clear-format-btn" class="btn-toolbar btn-icon" onclick="formatText('removeFormat')"
+                            title="Clear Formatting">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                <path
+                                    d="M3.27 5L2 6.27l6.97 6.97L6.5 19h3l1.57-3.66L16.73 21 18 19.73 3.55 5.27 3.27 5zM6 5v.18L8.82 8h2.4l-.72 1.68 2.1 2.1L14.21 8H20V5H6z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Actions Group - Bottom Row -->
+                <div class="control-group control-group-actions">
+                    <div class="control-group-buttons">
+                        <button id="save" class="btn-toolbar btn-icon" title="Save to KV">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                <polyline points="7 3 7 8 15 8"></polyline>
+                            </svg>
+                        </button>
+                        <button id="download" class="btn-toolbar btn-icon" title="Download PDF">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                        </button>
+                        <button class="btn-toolbar btn-icon btn-theme" onclick="toggleTheme()" aria-label="Toggle theme"
+                            title="Toggle theme">
+                            <!-- Moon icon for light theme (default) -->
+                            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z" />
+                            </svg>
+                            <!-- Sun icon for dark theme -->
+                            <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="currentColor"
+                                style="display: none">
+                                <path
+                                    d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Resume Container -->
+    <main class="main-content" id="main-content">
+        <!-- Small Screen Warning -->
+        <div id="small-screen-warning" class="small-screen-warning">
+            <div class="warning-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="warning-icon">
+                    <path d="M12 9v2m0 4v2m-6.773-10.53a10 10 0 1 1 13.546 0L5.227 5.47a9.98 9.98 0 0 0-13.546 0">
+                    </path>
+                </svg>
+                <h2>Hey there! 👋</h2>
+                <p>This resume builder works best on larger screens to give you the full editing experience.</p>
+                <p>Please switch to a laptop or desktop (minimum 1024px width) to create and edit your resume.</p>
+                <p class="current-width" id="current-width"></p>
+            </div>
+        </div>
+
+        <!-- Resume Editor Container with Sidebar Layout -->
+        <div id="resume-editor-container">
+            <!-- Resume Document -->
+            <div id="resume" class="resume-document">
+                <!-- Header -->
+                <div class="resume-header">
+                    <h1 id="name" contenteditable="true" class="editable-field">Khalid Warsame</h1>
+                    <p id="contact" contenteditable="true" class="editable-field contact-line">
+                        Nashville, TN (US Citizen) | (000) 000-0000 | abc@khalidwar.com | linkedin.com/in/abc
+                    </p>
+                </div>
+
+                <!-- Summary -->
+                <section class="resume-section">
+                    <h2 class="section-header">SUMMARY</h2>
+                    <p id="summary" contenteditable="true" class="editable-field resume-text">
+                        <strong>Results-driven mobile app developer with 4+ years of experience</strong> building
+                        <strong>high-quality apps using Flutter</strong>. Developed cross-platform apps that
+                        enhanced the guest experience for <strong>millions of users</strong> across 20 cruise ships,
+                        contributed to <strong>$10M+ in revenue</strong>, and helped a startup secure
+                        <strong>$100K in funding</strong> with a successful MVP launch.
+                    </p>
+                </section>
+
+                <!-- Work Experience -->
+                <section class="resume-section">
+                    <h2 class="section-header">WORK EXPERIENCE</h2>
+
+                    <div id="experience" contenteditable="true" class="editable-field resume-experience">
+                        <div class="experience-item">
+                            <div class="job-header">
+                                <span class="job-title"><strong>ABC Cruise Line - Full Time</strong></span>
+                                <span class="job-location">Miami, Florida</span>
+                            </div>
+                            <div class="job-subtitle">
+                                <span class="job-role"><strong>MOBILE APP DEVELOPER</strong></span>
+                                <span class="job-dates">Aug 2022 - Present</span>
+                            </div>
+                            <ul class="job-bullets">
+                                <li>Designed and launched <strong>cross-platform Android and iOS apps</strong>,
+                                    enhancing
+                                    the guest experience for <strong>millions of users</strong> across 20 cruise ships
+                                    and
+                                    boosting mobile engagement.</li>
+                                <li>Engineered custom solutions for seamless app connectivity, achieving <strong>90%
+                                        uptime</strong> across onshore cloud and onboard ship servers, ensuring
+                                    uninterrupted user access.</li>
+                                <li>Modularized <strong>80% of UI components</strong> and business logic, accelerating
+                                    development timelines and reducing redundant code by 50%.</li>
+                                <li>Contributed to <strong>$10M+ in revenue</strong> through the app launch, exceeding
+                                    sales
+                                    targets and driving onboard and onshore purchases.</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="job-header">
+                                <span class="job-title"><strong>Huntington National Bank - Contract</strong></span>
+                                <span class="job-location">Columbus, Ohio</span>
+                            </div>
+                            <div class="job-subtitle">
+                                <span class="job-role"><strong>MOBILE APP DEVELOPER</strong></span>
+                                <span class="job-dates">Mar 2022 - Jul 2022</span>
+                            </div>
+                            <ul class="job-bullets">
+                                <li>Developed a <strong>secure, reliable banking app</strong> for Android and iOS,
+                                    adhering
+                                    to best practices like the CLEAN framework and achieving <strong>100% test
+                                        coverage</strong>.</li>
+                                <li>Implemented resilient, <strong>secure code</strong> to comply with strict banking
+                                    regulations, ensuring <strong>zero data breaches</strong> and safeguarding sensitive
+                                    user information.</li>
+                                <li>Collaborated with cross-functional teams to enhance and maintain a consumer-facing
+                                    app,
+                                    resolving critical bugs and delivering new features to <strong>millions of
+                                        users</strong>.</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="job-header">
+                                <span class="job-title"><strong>Freelance & Consultancy</strong></span>
+                                <span class="job-location">Remote</span>
+                            </div>
+                            <div class="job-subtitle">
+                                <span class="job-role"><strong>MOBILE APP DEVELOPER</strong></span>
+                                <span class="job-dates">Oct 2020 - Present</span>
+                            </div>
+                            <ul class="job-bullets">
+                                <li>Developed an <strong>MVP for a real estate startup</strong>, enabling them to secure
+                                    <strong>$100,000 in funding</strong> and achieve <strong>2,000+ downloads</strong>
+                                    within 3 months of launch.
+                                </li>
+                                <li>Built and published <strong>personal mobile apps</strong>, generating
+                                    <strong>$3,000+ in
+                                        passive revenue</strong> and demonstrating expertise in app monetization
+                                    strategies.
+                                </li>
+                                <li>Managed <strong>end-to-end development</strong> of multiple mobile apps across
+                                    industries, delivering high-quality solutions with a <strong>98% crash-free
+                                        rate</strong> and meeting tight deadlines.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills & Interests -->
+                <section class="resume-section">
+                    <h2 class="section-header">SKILLS & INTERESTS</h2>
+                    <div id="skills" contenteditable="true" class="editable-field resume-skills">
+                        <p><strong>Frontend:</strong> Flutter SDK, Dart, UI/UX Design.</p>
+                        <p><strong>Backend:</strong> Firebase, Supabase (PostgreSQL), REST APIs</p>
+                        <p><strong>DevOps:</strong> GitHub, Git, CI/CD Pipelines, GitHub Actions.</p>
+                        <p><strong>Soft:</strong> Project planning, MVP building, cross-functional collaboration.</p>
+                        <p><strong>Languages:</strong> English, Arabic, Somali.</p>
+                    </div>
+                </section>
+
+                <!-- Education -->
+                <section class="resume-section">
+                    <h2 class="section-header">EDUCATION</h2>
+                    <div id="education" contenteditable="true" class="editable-field resume-education">
+                        <div class="education-item">
+                            <div class="education-header">
+                                <span class="school-name"><strong>South Central College</strong></span>
+                                <span class="school-location">North Mankato, MN</span>
+                            </div>
+                            <p class="education-degree"><em>Information Technology (Incomplete)</em></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
