@@ -5,7 +5,7 @@ const MAX_TAGLINE_LENGTH = 30;
 async function fetchAppData(appId) {
   try {
     // Use our own Cloudflare Pages Function to avoid CORS issues
-    const response = await fetch(`/apps-data?id=${appId}`, {
+    const response = await fetch(`/api/v1/app-store-data?id=${appId}`, {
       method: "GET",
       cache: "default",
     });
@@ -240,7 +240,7 @@ async function loadSocialStats() {
   }
 
   try {
-    const response = await fetch("/stats");
+    const response = await fetch("/api/v1/social-media-stats");
     if (!response.ok) throw new Error("Failed to fetch stats");
 
     const data = await response.json();

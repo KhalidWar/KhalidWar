@@ -1,8 +1,8 @@
 /**
- * Cloudflare Worker: stats-fetcher
+ * Cloudflare Worker: social-stats-fetcher
  *
  * Runs daily (cron trigger).
- * Fetches follower counts from public pages.
+ * Fetches follower counts from public social media pages.
  * Writes results into KV (SOCIAL_KV).
  *
  * Bindings needed in Cloudflare Dashboard:

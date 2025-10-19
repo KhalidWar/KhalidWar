@@ -1,5 +1,5 @@
 {
-  "name": "stats-fetcher",
+  "name": "social-stats-fetcher",
   "main": "index.js",
   "compatibility_date": "2025-10-04",
   "triggers": {

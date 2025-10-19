@@ -1,8 +1,8 @@
 /**
- * Cloudflare Worker: apps-fetcher
+ * Cloudflare Worker: app-store-fetcher
  *
  * Runs daily (cron trigger).
- * Fetches app data from iTunes API for all configured apps.
+ * Fetches app data from iTunes App Store API for all configured apps.
  * Writes results into KV (APPS_KV).
  *
  * Bindings needed in Cloudflare Dashboard:
@@ -19,14 +19,14 @@ const APP_IDS = [
 
 export default {
   async scheduled(event, env, ctx) {
-    console.log("🔄 Starting daily apps data fetch...");
+    console.log("🔄 Starting daily app store data fetch...");
     await updateAppsData(env);
   },
 
   async fetch(request, env, ctx) {
     // Allow manual trigger via HTTP request
     await updateAppsData(env);
-    return new Response("Apps data updated successfully", { status: 200 });
+    return new Response("App store data updated successfully", { status: 200 });
   },
 };
 
@@ -92,7 +92,7 @@ async function updateAppsData(env) {
   await env.APPS_KV.put("fetch-summary", JSON.stringify(results));
 
   console.log(
-    `🎉 Apps fetch completed: ${results.success.length} success, ${results.errors.length} errors`
+    `🎉 App store fetch completed: ${results.success.length} success, ${results.errors.length} errors`
   );
   return results;
 }

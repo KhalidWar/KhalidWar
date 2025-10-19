@@ -1,8 +1,10 @@
 /**
- * Cloudflare Pages Function: apps-data.js
+ * Cloudflare Pages Function: app-store-data.js
  * --------------------------------------------------------
  * Reads cached iTunes App Store API data from KV.
- * Data is populated by the apps-fetcher worker (runs daily).
+ * Data is populated by the app-store-fetcher worker (runs daily).
+ *
+ * Endpoint: GET /api/v1/app-store-data?id={appId}
  *
  * Bindings required:
  *   KV Namespace: APPS_KV
@@ -25,13 +27,14 @@ export async function onRequest(context) {
   const appId = url.searchParams.get("id");
 
   if (!appId) return jsonResponse({ error: "Missing app ID parameter" }, 400);
+
   if (!/^\d+$/.test(appId))
     return jsonResponse({ error: "Invalid app ID format" }, 400);
 
   const cacheKey = `app:${appId}`;
 
   try {
-    // Read data from KV (populated by apps-fetcher worker)
+    // Read data from KV (populated by app-store-fetcher worker)
     const cached = await env.APPS_KV.get(cacheKey, { type: "json" });
     return jsonResponse(cached.data, 200, true);
   } catch (error) {
