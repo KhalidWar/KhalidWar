@@ -109,7 +109,7 @@ async function fetchAll() {
     fetchYouTube("khalidwar"),
     fetchInstagram("khalidwars"),
     fetchTikTok("khalidwarsa"),
-    fetchTwitter("KhalidWarsa"),
+    fetchTwitter("KhalidWar"),
   ]);
 
   return {
