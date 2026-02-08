@@ -36,7 +36,7 @@ Beyond development, I create educational video content on YouTube and other plat
 
 <p align="left">
     <a href="https://www.linkedin.com/in/khalidwar/" target="_blank"> <img src="https://img.icons8.com/color/48/000000/linkedin.png"/></a>
-    <a href="https://twitter.com/KhalidWar" target="_blank"> <img src="https://img.icons8.com/color/48/000000/twitter--v1.png"/></a>
+    <a href="https://twitter.com/KhalidWarsa" target="_blank"> <img src="https://img.icons8.com/color/48/000000/twitter--v1.png"/></a>
     <a href="https://www.youtube.com/@khalidwar" target="_blank"> <img src="https://img.icons8.com/color/48/000000/youtube-play.png"/></a>
     <a href="https://www.tiktok.com/@khalidwar" target="_blank"> <img src="https://img.icons8.com/color/48/000000/tiktok.png"/></a>
     <a href="https://www.instagram.com/khalidwar" target="_blank"> <img src="https://img.icons8.com/color/48/000000/instagram-new.png"/></a>
