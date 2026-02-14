@@ -24,9 +24,17 @@ export default {
 };
 
 async function updateStats(env) {
+  const headers = {
+    "User-Agent": "khalidwar-stats-worker",
+    Accept: "application/vnd.github.v3+json",
+  };
+
+  // Fetch repos once, share between stats and languages
+  const repos = await fetchAllRepos(headers);
+
   const [stats, languages] = await Promise.allSettled([
-    fetchUserStats(),
-    fetchTopLanguages(),
+    fetchUserStats(headers, repos),
+    fetchTopLanguages(headers, repos),
   ]);
 
   const existingStats = await env.GITHUB_KV.get("stats:json", "json");
@@ -59,40 +67,6 @@ async function updateStats(env) {
 
 // --- Data Fetching ---
 
-async function fetchUserStats() {
-  const headers = {
-    "User-Agent": "khalidwar-stats-worker",
-    Accept: "application/vnd.github.v3+json",
-  };
-
-  const [commits, prs, issues, repos] = await Promise.all([
-    fetch(
-      `https://api.github.com/search/commits?q=author:${USERNAME}&per_page=1`,
-      {
-        headers: { ...headers, Accept: "application/vnd.github.cloak-preview+json" },
-      }
-    ).then((r) => r.json()),
-    fetch(
-      `https://api.github.com/search/issues?q=author:${USERNAME}+type:pr&per_page=1`,
-      { headers }
-    ).then((r) => r.json()),
-    fetch(
-      `https://api.github.com/search/issues?q=author:${USERNAME}+type:issue&per_page=1`,
-      { headers }
-    ).then((r) => r.json()),
-    fetchAllRepos(headers),
-  ]);
-
-  const totalStars = repos.reduce((sum, r) => sum + r.stargazers_count, 0);
-
-  return {
-    stars: totalStars,
-    commits: commits.total_count || 0,
-    prs: prs.total_count || 0,
-    issues: issues.total_count || 0,
-  };
-}
-
 async function fetchAllRepos(headers) {
   const repos = [];
   let page = 1;
@@ -112,16 +86,37 @@ async function fetchAllRepos(headers) {
   return repos;
 }
 
-async function fetchTopLanguages() {
-  const headers = {
-    "User-Agent": "khalidwar-stats-worker",
-    Accept: "application/vnd.github.v3+json",
-  };
+async function fetchUserStats(headers, repos) {
+  const [commits, prs, issues] = await Promise.all([
+    fetch(
+      `https://api.github.com/search/commits?q=author:${USERNAME}&per_page=1`,
+      {
+        headers: { ...headers, Accept: "application/vnd.github.cloak-preview+json" },
+      }
+    ).then((r) => r.json()),
+    fetch(
+      `https://api.github.com/search/issues?q=author:${USERNAME}+type:pr&per_page=1`,
+      { headers }
+    ).then((r) => r.json()),
+    fetch(
+      `https://api.github.com/search/issues?q=author:${USERNAME}+type:issue&per_page=1`,
+      { headers }
+    ).then((r) => r.json()),
+  ]);
 
-  const repos = await fetchAllRepos(headers);
+  const totalStars = repos.reduce((sum, r) => sum + r.stargazers_count, 0);
+
+  return {
+    stars: totalStars,
+    commits: commits.total_count || 0,
+    prs: prs.total_count || 0,
+    issues: issues.total_count || 0,
+  };
+}
+
+async function fetchTopLanguages(headers, repos) {
   const langTotals = {};
 
-  // Fetch language breakdowns in parallel (batched to stay within rate limits)
   const langPromises = repos
     .filter((r) => !r.fork && r.language)
     .map((r) =>
@@ -132,7 +127,7 @@ async function fetchTopLanguages() {
             langTotals[lang] = (langTotals[lang] || 0) + bytes;
           }
         })
-        .catch(() => {}) // skip on error
+        .catch(() => {})
     );
 
   await Promise.all(langPromises);
@@ -274,5 +269,5 @@ const LANG_COLORS = {
   SCSS: "#c6538c",
   Makefile: "#427819",
   CMake: "#DA3434",
-  Objective-C: "#438eff",
+  "Objective-C": "#438eff",
 };

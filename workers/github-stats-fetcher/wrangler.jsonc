@@ -8,7 +8,7 @@
   "kv_namespaces": [
     {
       "binding": "GITHUB_KV",
-      "id": "<your-kv-namespace-id>"
+      "id": "439fc5adb1584b5ea6fef1ac4fa0b2f3"
     }
   ]
 }
