@@ -1,0 +1,14 @@
+{
+  "name": "github-stats-fetcher",
+  "main": "index.js",
+  "compatibility_date": "2025-10-04",
+  "triggers": {
+    "crons": ["0 0 * * *"]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "GITHUB_KV",
+      "id": "<your-kv-namespace-id>"
+    }
+  ]
+}
