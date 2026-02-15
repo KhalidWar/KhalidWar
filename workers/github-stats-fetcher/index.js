@@ -10,7 +10,7 @@
  */
 
 const USERNAME = "KhalidWar";
-const TOP_LANGS_COUNT = 5;
+const TOP_LANGS_COUNT = 3;
 
 export default {
   async scheduled(event, env, ctx) {
@@ -87,7 +87,7 @@ async function fetchAllRepos(headers) {
 }
 
 async function fetchUserStats(headers, repos) {
-  const [commits, prs, issues] = await Promise.all([
+  const [commits, prs] = await Promise.all([
     fetch(
       `https://api.github.com/search/commits?q=author:${USERNAME}&per_page=1`,
       {
@@ -98,10 +98,6 @@ async function fetchUserStats(headers, repos) {
       `https://api.github.com/search/issues?q=author:${USERNAME}+type:pr&per_page=1`,
       { headers }
     ).then((r) => r.json()),
-    fetch(
-      `https://api.github.com/search/issues?q=author:${USERNAME}+type:issue&per_page=1`,
-      { headers }
-    ).then((r) => r.json()),
   ]);
 
   const totalStars = repos.reduce((sum, r) => sum + r.stargazers_count, 0);
@@ -110,7 +106,6 @@ async function fetchUserStats(headers, repos) {
     stars: totalStars,
     commits: commits.total_count || 0,
     prs: prs.total_count || 0,
-    issues: issues.total_count || 0,
   };
 }
 
@@ -146,82 +141,99 @@ async function fetchTopLanguages(headers, repos) {
 }
 
 // --- SVG Generation ---
+// Design tokens from khalidwar.com portfolio
+const FONT = "'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+const CARD_BG = "#f5f5f5";
+const CARD_BORDER = "#e5e5e5";
+const BORDER_RADIUS = 12;
+const TEXT_PRIMARY = "#000000";
+const TEXT_SECONDARY = "#525252";
+const TEXT_TERTIARY = "#737373";
+const ICON_COLOR = "#737373";
 
 function generateStatsCard(stats) {
   const items = [
-    { icon: starIcon, label: "Total Stars", value: formatNumber(stats.stars) },
-    { icon: commitIcon, label: "Total Commits", value: formatNumber(stats.commits) },
-    { icon: prIcon, label: "Total PRs", value: formatNumber(stats.prs) },
-    { icon: issueIcon, label: "Total Issues", value: formatNumber(stats.issues) },
+    { icon: starIcon, label: "Stars", value: formatNumber(stats.stars) },
+    { icon: commitIcon, label: "Commits", value: formatNumber(stats.commits) },
+    { icon: prIcon, label: "PRs", value: formatNumber(stats.prs) },
   ];
 
-  const rowHeight = 25;
-  const cardHeight = 45 + items.length * rowHeight + 20;
+  const padding = 20;
+  const headerHeight = 32;
+  const rowHeight = 36;
+  const cardWidth = 320;
+  const cardHeight = padding + headerHeight + items.length * rowHeight + padding;
 
   const rows = items
     .map(
       (item, i) => `
-    <g transform="translate(25, ${45 + i * rowHeight})">
-      ${item.icon}
-      <text x="22" y="12.5" class="stat-label">${item.label}:</text>
-      <text x="215" y="12.5" class="stat-value">${item.value}</text>
+    <g transform="translate(${padding}, ${padding + headerHeight + i * rowHeight})">
+      <g transform="translate(0, 0)">${item.icon}</g>
+      <text x="28" y="13" class="stat-label">${item.label}</text>
+      <text x="${cardWidth - padding * 2}" y="13" class="stat-value" text-anchor="end">${item.value}</text>
     </g>`
     )
     .join("");
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="${cardHeight}" viewBox="0 0 300 ${cardHeight}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}">
   <style>
-    .header { font: 600 14px 'Segoe UI', Ubuntu, sans-serif; fill: #2f80ed; }
-    .stat-label { font: 400 12px 'Segoe UI', Ubuntu, sans-serif; fill: #333; }
-    .stat-value { font: 600 12px 'Segoe UI', Ubuntu, sans-serif; fill: #333; }
-    .icon { fill: #4c71f2; }
+    .card-title { font: 700 15px ${FONT}; fill: ${TEXT_PRIMARY}; }
+    .stat-label { font: 500 13px ${FONT}; fill: ${TEXT_SECONDARY}; }
+    .stat-value { font: 700 13px ${FONT}; fill: ${TEXT_PRIMARY}; }
+    .icon { fill: ${ICON_COLOR}; }
   </style>
-  <rect x="0.5" y="0.5" rx="4.5" width="299" height="${cardHeight - 1}" fill="#fffefe" stroke="#e4e2e2"/>
-  <text x="25" y="28" class="header">KhalidWar's GitHub Stats</text>
+  <rect x="0.5" y="0.5" rx="${BORDER_RADIUS}" width="${cardWidth - 1}" height="${cardHeight - 1}" fill="${CARD_BG}" stroke="${CARD_BORDER}"/>
+  <text x="${padding}" y="${padding + 14}" class="card-title">GitHub Stats</text>
   ${rows}
 </svg>`;
 }
 
 function generateLanguagesCard(languages) {
-  const barWidth = 250;
-  const cardHeight = 120 + languages.length * 22;
+  const padding = 20;
+  const headerHeight = 32;
+  const barHeight = 8;
+  const barGap = 20;
+  const langRowHeight = 28;
+  const cardWidth = 320;
+  const barWidth = cardWidth - padding * 2;
+  const cardHeight = padding + headerHeight + barHeight + barGap + languages.length * langRowHeight + padding;
 
   const barSegments = languages
     .reduce(
       (acc, lang) => {
         const width = (parseFloat(lang.percentage) / 100) * barWidth;
         acc.segments.push(
-          `<rect x="${acc.x}" y="45" width="${width}" height="8" fill="${lang.color}" rx="0"/>`
+          `<rect x="${acc.x}" y="${padding + headerHeight}" width="${width}" height="${barHeight}" fill="${lang.color}"/>`
         );
         acc.x += width;
         return acc;
       },
-      { segments: [], x: 25 }
+      { segments: [], x: padding }
     )
     .segments.join("");
 
-  // Round corners on the full bar
-  const barMask = `<rect x="25" y="45" width="${barWidth}" height="8" rx="4" fill="white"/>`;
+  const barMask = `<rect x="${padding}" y="${padding + headerHeight}" width="${barWidth}" height="${barHeight}" rx="4" fill="white"/>`;
 
+  const legendY = padding + headerHeight + barHeight + barGap;
   const legend = languages
     .map(
       (lang, i) => `
-    <g transform="translate(25, ${65 + i * 22})">
-      <circle cx="6" cy="8" r="6" fill="${lang.color}"/>
-      <text x="16" y="12" class="lang-name">${lang.name}</text>
-      <text x="215" y="12" class="lang-pct">${lang.percentage}%</text>
+    <g transform="translate(${padding}, ${legendY + i * langRowHeight})">
+      <circle cx="6" cy="7" r="5" fill="${lang.color}"/>
+      <text x="18" y="11" class="lang-name">${lang.name}</text>
+      <text x="${cardWidth - padding * 2}" y="11" class="lang-pct" text-anchor="end">${lang.percentage}%</text>
     </g>`
     )
     .join("");
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="${cardHeight}" viewBox="0 0 300 ${cardHeight}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}">
   <style>
-    .header { font: 600 14px 'Segoe UI', Ubuntu, sans-serif; fill: #2f80ed; }
-    .lang-name { font: 400 12px 'Segoe UI', Ubuntu, sans-serif; fill: #333; }
-    .lang-pct { font: 600 12px 'Segoe UI', Ubuntu, sans-serif; fill: #333; }
+    .card-title { font: 700 15px ${FONT}; fill: ${TEXT_PRIMARY}; }
+    .lang-name { font: 500 13px ${FONT}; fill: ${TEXT_SECONDARY}; }
+    .lang-pct { font: 700 13px ${FONT}; fill: ${TEXT_PRIMARY}; }
   </style>
-  <rect x="0.5" y="0.5" rx="4.5" width="299" height="${cardHeight - 1}" fill="#fffefe" stroke="#e4e2e2"/>
-  <text x="25" y="28" class="header">Most Used Languages</text>
+  <rect x="0.5" y="0.5" rx="${BORDER_RADIUS}" width="${cardWidth - 1}" height="${cardHeight - 1}" fill="${CARD_BG}" stroke="${CARD_BORDER}"/>
+  <text x="${padding}" y="${padding + 14}" class="card-title">Top Languages</text>
   <defs>
     <clipPath id="bar-clip">${barMask}</clipPath>
   </defs>
@@ -243,8 +255,6 @@ const starIcon = `<svg class="icon" viewBox="0 0 16 16" width="16" height="16"><
 const commitIcon = `<svg class="icon" viewBox="0 0 16 16" width="16" height="16"><path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/></svg>`;
 
 const prIcon = `<svg class="icon" viewBox="0 0 16 16" width="16" height="16"><path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"/></svg>`;
-
-const issueIcon = `<svg class="icon" viewBox="0 0 16 16" width="16" height="16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"/></svg>`;
 
 // Common language colors (GitHub's linguist colors)
 const LANG_COLORS = {
