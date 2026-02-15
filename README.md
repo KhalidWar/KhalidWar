@@ -62,8 +62,8 @@ Beyond development, I create educational video content on YouTube and other plat
 </table>
 
 <a href="https://github.com/KhalidWar">
-  <img align="center" src="https://khalidwar.com/api/v1/github-stats?type=stats&v=2" alt="KhalidWar's GitHub Stats" />
+  <img align="center" src="https://khalidwar.com/api/v1/github-stats?type=stats" alt="KhalidWar's GitHub Stats" />
 </a>
 <a href="https://github.com/KhalidWar">
-  <img align="center" src="https://khalidwar.com/api/v1/github-stats?type=languages&v=2" alt="Top Languages" />
+  <img align="center" src="https://khalidwar.com/api/v1/github-stats?type=languages" alt="Top Languages" />
 </a>
