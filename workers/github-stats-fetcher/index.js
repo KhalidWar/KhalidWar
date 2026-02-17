@@ -32,6 +32,12 @@ async function updateStats(env) {
   // Fetch repos once, share between stats and languages
   const repos = await fetchAllRepos(headers);
 
+  // Abort if repo fetch failed — prevents caching bad values (e.g. 0 stars)
+  if (repos.length === 0) {
+    console.log("GitHub stats skipped: repo fetch returned empty (likely rate-limited)");
+    return;
+  }
+
   const [stats, languages] = await Promise.allSettled([
     fetchUserStats(headers, repos),
     fetchTopLanguages(headers, repos),
@@ -63,6 +69,7 @@ async function updateStats(env) {
   if (langsSvg) await env.GITHUB_KV.put("svg:languages", langsSvg);
 
   console.log("GitHub stats updated:", JSON.stringify(mergedStats));
+
 }
 
 // --- Data Fetching ---
