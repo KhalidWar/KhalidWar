@@ -7,8 +7,6 @@
 
 With over 5 years of experience, I've built mobile apps used by millions — from cruise ship guest experiences across 20 ships at Norwegian Cruise Line to secure mobile banking at Huntington National Bank, contributing to $200M+ in combined revenue. I build across the full stack with Flutter, React Native, and TypeScript, leveraging AI tools like Claude Code and Cursor to ship fast without cutting corners.
 
-🌐 **Portfolio:** [khalidwar.com](https://khalidwar.com)
-
 ### Experienced in
 
 <p align="left">
