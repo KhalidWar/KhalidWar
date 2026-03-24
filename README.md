@@ -1,34 +1,43 @@
-[flutterweb]: https://flutter.dev/
-
 <div align="center">
-  <h2>Hi 👋, I'm Khalid Warsame</h1>
-  <h3>Experienced Mobile App Developer</h3>
+  <h2>Hi 👋, I'm Khalid Warsame</h2>
+  <h3>Mobile App Developer · Full-Stack Builder</h3>
 </div>
 
 <br/>
 
-I work at one of the top three cruise companies in the world, where I played a key role in launching a brand-new app that enhanced the guest experience for millions of users across 20 cruise ships, contributing to over $10M in revenue. Additionally, I helped a startup secure $100K in funding with a successful MVP launch.
+With over 5 years of experience, I've built mobile apps used by millions — from cruise ship guest experiences across 20 ships at Norwegian Cruise Line to secure mobile banking at Huntington National Bank, contributing to $200M+ in combined revenue. I build across the full stack with Flutter, React Native, and TypeScript, leveraging AI tools like Claude Code and Cursor to ship fast without cutting corners.
 
-Beyond development, I create educational video content on YouTube and other platforms, sharing my knowledge to help aspiring developers learn and grow.
+🌐 **Portfolio:** [khalidwar.com](https://khalidwar.com)
 
 ### Experienced in
 
 <p align="left">
-  <!-- Mobile Development & Backend -->
-  <a href="https://www.flutter.dev" target="_blank">
+  <a href="https://flutter.dev" target="_blank">
     <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
   </a>
   <a href="https://dart.dev" target="_blank">
     <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"/>
   </a>
+  <a href="https://reactnative.dev" target="_blank">
+    <img src="https://img.shields.io/badge/React_Native-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React Native"/>
+  </a>
+  <a href="https://typescriptlang.org" target="_blank">
+    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
+  </a>
+  <a href="https://react.dev" target="_blank">
+    <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React"/>
+  </a>
+  <a href="https://expo.dev" target="_blank">
+    <img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Expo"/>
+  </a>
   <a href="https://firebase.google.com" target="_blank">
     <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase"/>
   </a>
-  <a href="https://firebase.google.com/products/firestore" target="_blank">
-    <img src="https://img.shields.io/badge/Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firestore"/>
-  </a>
   <a href="https://supabase.com" target="_blank">
     <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase"/>
+  </a>
+  <a href="https://cloudflare.com" target="_blank">
+    <img src="https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Cloudflare"/>
   </a>
 </p>
 
